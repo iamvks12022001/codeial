@@ -6,7 +6,7 @@ const port=8000;
 
 app.use('/',require('./routes'));// bydefault it require ./routes/index.js
 
-// set up view engine
+// set up view engine  
 app.set('view engine','ejs');//to set key view engine as ejs
 app.set('views','./views');// we can also use path join here
 
