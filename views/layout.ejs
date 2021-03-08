@@ -3,12 +3,20 @@
         <title>
             <%=title%>
         </title>
+        <link rel="stylesheet" href="/css/layout.css">
+        <!-- too add static file -->
+
+       <%- style %>       
+       <!--to add css link in head not in body -->
     </head>
     <body>
         <%- include('_header');%> 
         <%- body %> 
         <!-- body is keyword to specify that,that is a the variable part -->
-        <%- include('_header');%>
+        <%- include('_footer');%>
+
+        <%- script %>    
+           <!--to add js link in head not in body -->
     </body>
 </html>
 

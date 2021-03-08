@@ -2,10 +2,20 @@ const express=require('express');
 const app=new express();
 const port=8000;
 
+const db=require('./config/mongoose'); // connect to database
+
 // to use express router
 const expressLayouts=require('express-ejs-layouts');
 app.use(expressLayouts);
 // to set middleware for layout
+app.use(express.static('./assets'));
+//middleware for static file
+
+
+//extract style and script from sub pages into the layout
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
+
 
 app.use('/',require('./routes'));// bydefault it require ./routes/index.js
 
