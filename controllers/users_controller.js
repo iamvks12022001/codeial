@@ -16,3 +16,15 @@ module.exports.signIn=function(req,res){
         title:"iCoder | Sign In" 
     })
 }
+// get the sign up data
+
+module.exports.create=function(req,res){
+    // to Do later
+
+}
+// sign in that is create the session 
+
+module.exports.createSesion=function(req,res){
+    // to Do later
+
+}
