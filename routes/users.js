@@ -12,3 +12,7 @@ module.exports=router;// to index.js of router
 
 
 // sare users ke route and controllers iss file me he ha
+
+//routers for sign in and sign up
+router.get('/sign-up',usersController.signUp);
+router.get('/sign-in',usersController.signIn);
