@@ -2,6 +2,8 @@ const express=require('express');
 const app=new express();
 const port=8000;
 
+const cookieParser=require('cookie-parser'); // to get cookie parser modules
+
 const db=require('./config/mongoose'); // connect to database
 
 // to use express router
@@ -11,7 +13,8 @@ app.use(expressLayouts);
 app.use(express.static('./assets'));
 //middleware for static file
 
-
+app.use(express.urlencoded()); // to read the post data
+app.use(cookieParser());// to parse the cookie
 //extract style and script from sub pages into the layout
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
