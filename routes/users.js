@@ -7,12 +7,16 @@ const usersController =require('../controllers/users_controller');//path to user
 router.get('/profile',usersController.profile);//home method get imported from home_controller file
 // usersController.profile run when client want user/profile request
 
+//routers for sign in and sign up
+router.get('/sign-up',usersController.signUp);
+router.get('/sign-in',usersController.signIn);
+
+router.post('/create',usersController.create);
+//post the data to database
+
 
 module.exports=router;// to index.js of router
 
 
 // sare users ke route and controllers iss file me he ha
 
-//routers for sign in and sign up
-router.get('/sign-up',usersController.signUp);
-router.get('/sign-in',usersController.signIn);
