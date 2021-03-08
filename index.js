@@ -3,6 +3,9 @@ const app=new express();
 const port=8000;
 
 // to use express router
+const expressLayouts=require('express-ejs-layouts');
+app.use(expressLayouts);
+// to set middleware for layout
 
 app.use('/',require('./routes'));// bydefault it require ./routes/index.js
 
