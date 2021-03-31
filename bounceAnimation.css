@@ -1,0 +1,47 @@
+@keyframes bounce{
+    from{
+        
+        
+    }
+    20%{
+        
+        transform: scale(0.4) translateY(-400px) translateX(20px) ;
+    }
+   
+    40%{
+        
+        transform:  translateX(40px) ;
+    }
+    55%{
+        
+        transform: scale(0.5) translateY(-200px) translateX(55px) ;
+    }
+   
+    70%{
+        
+        transform:  translateX(70px) ;
+    }
+    85%{
+        
+        transform: scale(0.7) translateY(-100px) translateX(80px) ;
+    }
+   
+    to{
+        
+        transform:  translateX(90px) ;
+    }
+}
+
+div{
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    background-color: aquamarine;
+    
+    animation: bounce 3s ease-in-out  infinite alternate ;
+    
+
+}
