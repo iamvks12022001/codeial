@@ -5,13 +5,13 @@ div{
     top: 20%;
     left: 20%;
     background-color: aquamarine;
-
+    /* transform:rotateZ(100deg); */
     /* transform: scale(0.9,0.9); */
-    transition:height 1s ease-in-out 0.5s;
+    /* transition:height 1s ease-in-out 0.5s; */
 
 }
 
 div:hover{
-    height: 400px;
-    width: 400px;
+    /* height: 400px;
+    width: 400px; */
 }
