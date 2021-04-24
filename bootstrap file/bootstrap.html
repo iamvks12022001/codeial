@@ -7,15 +7,18 @@
 
  <!-- Bootstrap CSS -->
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <!--including css file after bootstrap file so the style.css file override the bootstrap css-->
+ <link rel="stylesheet" href="./style.css">
    
 </head>
 <body>
      
      <div class="container">    
-        <div class="row" style="background-color: aqua;"> <!--left 2 col unfilled-->
-            <div class="col-12 col-md-6 col-lg-2 d-md-none d-lg-block mt-3" style="background-color: brown; height: 200px;"> <!--cover 6 col-->
-            </div>    <!--block hidden in medium size screen -->
-            <div class="col-12 col-md-6 col-lg-2" style="background-color: black; height: 200px;"> <!--cover 4 col-->
+        <div class="row" style="background-color: aqua;"> 
+            <!--including border styling in it by overrriding the bootstrap css style-->
+            <div class="col-12 col-md-6 col-lg-2 border border-success border-wid " style="background-color: brown; height: 200px;"> <!--cover 6 col-->
+            </div>    
+            <div class="col-12 col-md-6 col-lg-2" style="background-color: blue; height: 200px;"> <!--cover 4 col-->
             </div>
             
         </div>
