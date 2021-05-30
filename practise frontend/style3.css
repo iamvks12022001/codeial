@@ -1,0 +1,19 @@
+#container{
+    height:400px ;
+    width: 400px;
+    margin: 40px;
+    border: 2px solid black;
+    background-image: linear-gradient(red,blue,green );
+}
+a:link{
+    background-color: green;
+}
+p:active{
+    background-color: green;
+}
+div:target{
+    background-color: green;
+}
+p::before{
+    content: 'start';
+}

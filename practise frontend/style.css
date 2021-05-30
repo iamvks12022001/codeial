@@ -1,0 +1,32 @@
+p.b{
+    color: blue;
+    font-size: medium;
+}
+p#l-1{
+    color: blue;
+    font-size: medium;
+}
+html{
+    
+    font-size: 40px;
+    background-image: url(./win.jpg);
+    background-repeat:no-repeat;
+    background-position: center;
+    /* background-size: cover; */
+    background-attachment: fixed;
+}
+
+main{
+    display: inline-block;
+}
+
+
+.container{
+    margin-left: 500px;
+    padding: 2rem;
+    height:500px;
+    width: 300px;
+    background-color:green;
+    overflow-wrap:break-word;
+    overflow:visible;
+  }
