@@ -15,7 +15,27 @@ class CartItem extends React.Component{
         console.log("qty inc by 1 ", this.state);
       //  this.state.qty++;
 
-    }
+    //  setState form 1
+    //   this.setState({
+    //       qty:this.state.qty+1
+    //   });
+
+    //setState form -2
+
+    this.setState((prevState)=>{
+            return{
+                  qty:prevState.qty+1
+            }
+    });
+//   or 
+//     this.setState(function(prevState){
+//         return{
+//               qty:prevState.qty+1
+//         }
+//       });
+  
+
+}
     render(){
         const{price,title,qty}=this.state;
         return(
