@@ -1,5 +1,5 @@
 import React from 'react';
-import reactDom from 'react-dom';
+
 class CartItem extends React.Component{
     constructor(){
         super();//this  will call constructor of React component ,class which we extend
@@ -9,6 +9,12 @@ class CartItem extends React.Component{
             qty:1,
             img:''
         }
+        //this.increaseQuantity=this.increaseQuantity.bind(this);
+    }
+    increaseQuantity=()=>{
+        console.log("qty inc by 1 ", this.state);
+      //  this.state.qty++;
+
     }
     render(){
         const{price,title,qty}=this.state;
@@ -24,9 +30,20 @@ class CartItem extends React.Component{
                    <div style={{color:'#777'}}>Qty: {qty}</div>
                    <div className='cart-item-actions'>
                     {/* Buttons */}  
-                    <img alt="increase" className="action-icons" src="https://image.flaticon.com/icons/png/128/992/992651.png"/>
-                    <img alt="decrease" className="action-icons" src="https://image.flaticon.com/icons/png/512/992/992683.png"/>
-                    <img alt="delete" className="action-icons" src="https://t4.ftcdn.net/jpg/00/98/26/11/240_F_98261175_Sv69O3rZsHApYkjAdrWbgQixYHwyZyOr.jpg"/>
+                    <img alt="increase" 
+                    className="action-icons"
+                     src="https://image.flaticon.com/icons/png/128/992/992651.png"
+                     onClick={this.increaseQuantity}
+                     />
+
+                    <img alt="decrease"
+                     className="action-icons" 
+                     src="https://image.flaticon.com/icons/png/512/992/992683.png"/>
+
+                    <img alt="delete" 
+                    className="action-icons" 
+                    src="https://t4.ftcdn.net/jpg/00/98/26/11/240_F_98261175_Sv69O3rZsHApYkjAdrWbgQixYHwyZyOr.jpg"/>
+
                    </div>
                </div>
            </div>
