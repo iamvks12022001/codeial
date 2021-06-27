@@ -1,42 +1,10 @@
 import React from 'react';
 
 class CartItem extends React.Component{
-    constructor(){
-        super();//this  will call constructor of React component ,class which we extend
-        this.state={
-            price:945,
-            title:'Mobile Phone',
-            qty:1,
-            img:''
-        }
-        //this.increaseQuantity=this.increaseQuantity.bind(this);
-       // this.testing();
-    }
-  //using promsis to check behaviour of setState function
-    // testing(){
-    //     const promise=new Promise((resolve,reject)=>{
-    //         setTimeout(()=>{
-    //             resolve('done');
-
-    //         },5000);
-    //     })
-    //     promise.then(()=>{
-    //         this.setState({qty:this.state.qty+10});
-    //         this.setState({qty:this.state.qty+10});
-    //         this.setState({qty:this.state.qty+10});
-    //         console.log('state: ',this.state);
-    //     });
-    // }
+   
+  
     increaseQuantity=()=>{
-      //  console.log("qty inc by 1 ", this.state);
-      //  this.state.qty++;
-
-    //  setState form 1
-    //   this.setState({
-    //       qty:this.state.qty+1
-    //   });
-
-    //setState form -2
+      
 
     this.setState((prevState)=>{
             return{
@@ -45,13 +13,7 @@ class CartItem extends React.Component{
     },()=>{
         console.log('new state: ',this.state);
     });
-    //console.log(this.state);// try to check asynchronous behaviour of setState function
-//   or 
-//     this.setState(function(prevState){
-//         return{
-//               qty:prevState.qty+1
-//         }
-//       });
+   
    }
 decreaseQuantity=()=>{
         const {qty}=this.state;
@@ -72,16 +34,19 @@ decreaseQuantity=()=>{
    }
 
     render(){
-        console.log("render");
-        const{price,title,qty}=this.state;
+       console.log("this.props ",this.props);
+        const{price,title,qty}=this.props.product; //props is basically argument that
+        // has been pass while calling this file cartitems
+
         return(
            <div className='cart-item'>
+               {/* {this.props.jsx} */}
                <div className='left-block'>
                    <img style={styles.image}/>
 
                </div>
                <div className='right-block'>
-                   <div style={{fontSize:25}}>{this.state.title}</div>  {/*inline styling*/}
+                   <div style={{fontSize:25}}>{title}</div>  {/*inline styling*/}
                    <div style={{color:'#777'}}>Rs: {price}</div>
                    <div style={{color:'#777'}}>Qty: {qty}</div>
                    <div className='cart-item-actions'>
