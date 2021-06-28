@@ -1,38 +1,8 @@
 import React from 'react';
 
 class CartItem extends React.Component{
-   
-  
-    increaseQuantity=()=>{
-      
 
-    this.setState((prevState)=>{
-            return{
-                  qty:prevState.qty+1
-            }
-    },()=>{
-        console.log('new state: ',this.state);
-    });
-   
-   }
-decreaseQuantity=()=>{
-        const {qty}=this.state;
-        if(qty==0)
-        {
-            return;
-        }
-            //console.log("qty dec by 1 ", this.state);
-
-            this.setState((prevState)=>{
-                return{
-                    qty:prevState.qty-1
-                }
-        },()=>{
-            console.log('new state: ',this.state);
-        });
-
-   }
-
+ 
     render(){
        console.log("this.props ",this.props);
         const{price,title,qty}=this.props.product; //props is basically argument that
@@ -52,21 +22,25 @@ decreaseQuantity=()=>{
                    <div className='cart-item-actions'>
                     {/* Buttons */}  
                     <img alt="increase" 
-                    className="action-icons"
+                     className="action-icons"
                      src="https://image.flaticon.com/icons/png/128/992/992651.png"
-                     onClick={this.increaseQuantity}
+                     //if you not want to use arrow function
+                   //  onClick={this.props.onIncreaseQuantity.bind(this,this.props.product)}
+                   onClick={()=>this.props.onIncreaseQuantity(this.props.product)}
+                     //by onclick i have to send the information of items that is clicked
                      />
-
+        
                     <img alt="decrease"
                      className="action-icons" 
                      src="https://image.flaticon.com/icons/png/512/992/992683.png"
-                     onClick={this.decreaseQuantity}
+                     onClick={()=>this.props.onDecreaseQuantity(this.props.product)}
                      />
 
                     <img alt="delete" 
                     className="action-icons" 
-                    src="https://t4.ftcdn.net/jpg/00/98/26/11/240_F_98261175_Sv69O3rZsHApYkjAdrWbgQixYHwyZyOr.jpg"/>
-
+                    src="https://t4.ftcdn.net/jpg/00/98/26/11/240_F_98261175_Sv69O3rZsHApYkjAdrWbgQixYHwyZyOr.jpg"
+                    onClick={()=>this.props.onDeleteItem(this.props.product)}
+                    />
                    </div>
                </div>
            </div>
