@@ -30,7 +30,7 @@ componentDidMount(){
 
   //adding listiners 
 
-  firebase.firestore().collection('products').onSnapshot((snapshot)=>{
+  firebase.firestore().collection('products').orderBy('price').onSnapshot((snapshot)=>{
     console.log(snapshot);
     snapshot.docs.map((doc)=>{
     console.log(doc.data())
@@ -53,10 +53,20 @@ handleIncreaseQuantity=(product)=>{
     console.log('heyy Please inc the qty of ',product);
    const {products}=this.state;
    const index=products.indexOf(product);
-   products[index].qty+=1;
-   this.setState({
-       products:products
-   })
+  //  products[index].qty+=1;
+  //  this.setState({
+  //      products:products
+
+  //  })
+  const docRef=firebase.firestore().collection('products').doc(products[index].id);
+  docRef.update({qty:products[index].qty+1
+  })
+  .then(()=>{
+    console.log("document updated succesfully");
+  })
+  .catch((error)=>{
+    console.log("document not get updated ",error);
+  })
 }
 handleDecreaseQuantity=(product)=>{
    console.log("this==>",this)
@@ -67,10 +77,19 @@ handleDecreaseQuantity=(product)=>{
    {
      return;
    }
-   products[index].qty-=1;
-   this.setState({
-       products:products
-   })
+  //  products[index].qty-=1;
+  //  this.setState({
+  //      products:products
+  //  })
+  const docRef=firebase.firestore().collection('products').doc(products[index].id);
+  docRef.update({qty:products[index].qty-1
+  })
+  .then(()=>{
+    console.log("document updated succesfully");
+  })
+  .catch((error)=>{
+    console.log("document not get updated ",error);
+  })
 }
 handleDeleteItem=(product)=>{
    console.log("this==>",this)
@@ -78,10 +97,17 @@ handleDeleteItem=(product)=>{
     const{products}=this.state;
    
     const index=products.indexOf(product);
-    products.splice(index,1);
-    this.setState({
-       products:products
-   })
+  //   products.splice(index,1);
+  //   this.setState({
+  //      products:products
+  //  })
+  const docRef=firebase.firestore().collection('products').doc(products[index].id);
+  docRef.delete().then(()=>{
+    console.log("document deleted succesfully");
+  })
+  .catch((error)=>{
+    console.log("document not get deleted ",error);
+  })
 }
 getCartCount=()=>{
    const{products}=this.state;
@@ -99,6 +125,23 @@ getCartTotal=()=>{
    })
    return total;
 }
+addProduct=()=>{
+  firebase
+    .firestore()
+    .collection('products')
+    .add({
+      img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCV_kE3zl7ZCRZwUqoQBC60DbDaf1fYQHu0Q&usqp=CAU',
+      price:100,
+      qty:4,
+      title:'Washing Machine'   //this will set a promise 
+    })
+     .then((docRef)=>{
+       console.log('Product has been added', docRef)
+     })
+      .catch((error)=>{
+        console.log(error);
+      })
+}
 render(){
   const {products,loading}=this.state;
   return (
@@ -108,6 +151,7 @@ render(){
     count={this.getCartCount()}//we are passing the value not the function so that why '()' is used
     //we called the getCartCount here and pass the value
     />
+    <button onClick={this.addProduct} style={{padding:20,fontSize:20}}> Add a Product</button>
     {/* passing to navbar and cart.js as a props */}
      <Cart
      products={products} 
@@ -126,3 +170,7 @@ render(){
 }
 
 export default App;
+
+
+// query to find product whose price less then < 99 
+//firebase.firestore().where('price','<',99);
