@@ -1,32 +1,52 @@
 import React  from 'react';
 import Cart from './Cart';
 import Navbar from './Navbar';
+import firebase from "firebase/app";
 class App  extends React.Component {
   constructor(){
     super();
     this.state={
-       products:[
-        { price:95,
-        title:'watch',
-        qty:7,
-        img:'https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d2F0Y2h8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-        id:1
-        },
-        { price:9456,
-            title:'Mobile Phone',
-            qty:1,
-            img:'https://images.unsplash.com/photo-1604474834292-8f0276a2065f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bW9iaWxlcGhvbmV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-            id:2
-        },
-        { price:857,
-            title:'Bag',
-            qty:16,
-            img:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmFnfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-            id:3
-        }
-      ]
-    }
-    
+       products:[],
+       loading:true
+    }  
+}
+componentDidMount(){
+  // firebase.firestore().collection('products').get().then((snapshot)=>{
+  // console.log(snapshot);
+  // snapshot.docs.map((doc)=>{
+  //   console.log(doc.data())
+  // });
+  // const products=snapshot.docs.map((doc)=>{
+   
+  //  const data=doc.data();
+  //   data['id']=doc.id;
+  //   return data;
+  // })
+  // this.setState({
+  //   products:products,
+  //   loading :false
+  // })
+  // })
+
+  //adding listiners 
+
+  firebase.firestore().collection('products').onSnapshot((snapshot)=>{
+    console.log(snapshot);
+    snapshot.docs.map((doc)=>{
+    console.log(doc.data())
+  });
+  const products=snapshot.docs.map((doc)=>{
+   
+   const data=doc.data();
+    data['id']=doc.id;
+    return data;
+  })
+  this.setState({
+    products:products,
+    loading :false
+  })
+  })
+      
 }
 handleIncreaseQuantity=(product)=>{
   console.log("this==>",this)
@@ -43,7 +63,7 @@ handleDecreaseQuantity=(product)=>{
     console.log('heyy Please dec the qty of ',product);
    const {products}=this.state;
    const index=products.indexOf(product);
-   if(products[index].qty==0)
+   if(products[index].qty===0)
    {
      return;
    }
@@ -80,7 +100,7 @@ getCartTotal=()=>{
    return total;
 }
 render(){
-  const {products}=this.state;
+  const {products,loading}=this.state;
   return (
 
     <div className="App">
@@ -94,6 +114,8 @@ render(){
      onIncreaseQuantity={this.handleIncreaseQuantity}   
      onDecreaseQuantity={this.handleDecreaseQuantity}
      onDeleteItem={this.handleDeleteItem}/>
+     {loading && <h1>Loading Products</h1>}  
+     {/* conditional rendering */}
      <div style={{fontSize:20, padding:10}}>
        TOTAL: {this.getCartTotal()}
      </div>
