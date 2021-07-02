@@ -4,3 +4,7 @@
 {
     type:'Decrease_Count'
 }
+
+{
+    type:'Add Movies'
+}
