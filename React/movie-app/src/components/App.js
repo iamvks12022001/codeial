@@ -15,9 +15,10 @@ function App() {
        </div>
 
        <div className="list">
-         {data.map(movie=>(
-           <MovieCard movie={movie}/> //passing as the props
+         {data.map((movie,index)=>(
+           <MovieCard movie={movie} key={`movies-${index}`}/> //passing as the props
          ))}
+         {/* //key is passed just to remove warning */}
        </div>
      </div>
     </div>
