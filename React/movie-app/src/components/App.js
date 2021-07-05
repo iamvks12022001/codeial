@@ -21,7 +21,7 @@ class App extends React.Component {
   }
   render(){
     console.log("render");
-  const movies=this.props.store.getState();
+  const {list}=this.props.store.getState();//now get the object
   return (
     <div className="App">
      <Navbar/>
@@ -32,7 +32,7 @@ class App extends React.Component {
        </div>
 
        <div className="list">
-         {movies.map((movie,index)=>(
+         {list.map((movie,index)=>(
            <MovieCard movie={movie} key={`movies-${index}`}/> //passing as the props
          ))}
          {/* //key is passed just to remove warning */}
