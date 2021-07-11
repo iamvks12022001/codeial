@@ -13,7 +13,7 @@ class App extends React.Component {
     console.log("CDM");
     const { store }=this.props;
     store.subscribe(()=>{
-       console.log("UPDATED");
+       console.log("UPDATED" ,this.props.store.getState());
        this.forceUpdate(); // always try to not use this function
     })
     store.dispatch(addMovies(data));
