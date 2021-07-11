@@ -19,6 +19,20 @@ class App extends React.Component {
     store.dispatch(addMovies(data));
     console.log('STATE',this.props.store.getState());
   }
+  isMovieFavourite=(movie)=>{
+    const {favourites}=this.props.store.getState();
+
+    const index=favourites.indexOf(movie);
+    if(index!==-1)
+    {
+      //we found the movie
+      console.log("trueeeeeee");
+      return true;
+    }
+  // we not find the movie
+  console.log("falseeeee");
+    return false;
+  }
   render(){
     console.log("render");
   const {list}=this.props.store.getState();//now get the object
@@ -33,7 +47,9 @@ class App extends React.Component {
 
        <div className="list">
          {list.map((movie,index)=>(
-           <MovieCard movie={movie} key={`movies-${index}`}/> //passing as the props
+           <MovieCard movie={movie} key={`movies-${index}`} dispatch={this.props.store.dispatch}
+           isFavourite={this.isMovieFavourite(movie)}/> //passing as the props
+           //we are calling the funcrtion so that mean isfavourite is either true or false
          ))}
          {/* //key is passed just to remove warning */}
        </div>
