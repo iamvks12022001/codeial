@@ -16,7 +16,7 @@ export default function movies(state=initialMoviesState,action){
     // }
     // return state;
     // we can use if else but generally switch case is used
-
+    console.log(action.type,"<->",state);//action me gatbage value jaega
     switch(action.type)
     {
         case ADD_MOVIES:

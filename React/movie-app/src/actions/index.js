@@ -15,9 +15,11 @@ export const ADD_TO_FAVOURITE='ADD_TO_FAVOURITE';
 export const REMOVE_FROM_FAVOURITES='REMOVE_FROM_FAVOURITES';
 export const SET_SHOW_FAVOURITES='SET_SHOW_FAVOURITES';
 
+console.log("inside action");
 //action creator
 export function addMovies(movies)
 {
+    console.log("inside action function");
     return {
         type:ADD_MOVIES,
         movies:movies
