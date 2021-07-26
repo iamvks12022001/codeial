@@ -3,10 +3,37 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 
-import {createStore} from 'redux';
+import {createStore,applyMiddleware} from 'redux';
 import combineReducers from './reducers';
 
-const store=createStore(combineReducers);
+//so internlly redux is calling in this way
+//logger(obj)(next)(action)
+// const logger=function({dispatch,getState}){  //useing currying
+//   return function(next){
+//     return function(action){
+//       //middleware code
+//       console.log('1st middleware Action Tpe = ',action.type);
+//       next(action);
+//     }
+//   }
+// }
+
+const logger=({dispatch,getState})=>(next)=>(action)=>{
+   //middleware code
+   console.log('1st middleware Action Tpe = ',action.type);
+   next(action);
+}
+const fogger=function({dispatch,getState}){  //useing currying
+  return function(next){
+    return function(action){
+      //middleware code
+      console.log('2st middleware Action Tpe = ',action.type);
+      next(action);
+    }
+  }
+}
+
+const store=createStore(combineReducers,applyMiddleware(logger,fogger));
 console.log('store',store);
 // console.log('BEFORE STATE',store.getState());
 // //initialy we have empty state [];
