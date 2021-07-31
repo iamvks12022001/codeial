@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './components/App';
-
+import './index.css';
+import thunk from 'redux-thunk';
 import {createStore,applyMiddleware} from 'redux';
 import combineReducers from './reducers';
 
@@ -20,20 +20,23 @@ import combineReducers from './reducers';
 
 const logger=({dispatch,getState})=>(next)=>(action)=>{
    //middleware code
-   console.log('1st middleware Action Tpe = ',action.type);
+   if(typeof action !=='function')
+   {
+    console.log('1st middleware Action Tpe = ',action.type);
+
+   }
    next(action);
 }
-const fogger=function({dispatch,getState}){  //useing currying
-  return function(next){
-    return function(action){
-      //middleware code
-      console.log('2st middleware Action Tpe = ',action.type);
-      next(action);
-    }
-  }
-}
-
-const store=createStore(combineReducers,applyMiddleware(logger,fogger));
+// const thunk=({dispatch,getState})=>(next)=>(action)=>{
+//   //middleware code
+//   if(typeof action==='function'){
+//     action(dispatch);
+//     return;
+//   }
+//   next(action);
+// }
+console.log("hii-0");
+const store=createStore(combineReducers,applyMiddleware(logger,thunk));
 console.log('store',store);
 // console.log('BEFORE STATE',store.getState());
 // //initialy we have empty state [];
@@ -46,6 +49,7 @@ console.log('store',store);
 // now state get set state
 ReactDOM.render(
   <React.StrictMode>
+   { console.log("dddd")}
     <App store={store}/>
   </React.StrictMode>,
   document.getElementById('root')

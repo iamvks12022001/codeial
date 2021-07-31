@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import { ADD_MOVIES,ADD_TO_FAVOURITE,REMOVE_FROM_FAVOURITES,SET_SHOW_FAVOURITES } from "../actions";
+import { ADD_MOVIES,ADD_MOVIE_TO_LIST,ADD_SEARCH_RESULT,ADD_TO_FAVOURITE,REMOVE_FROM_FAVOURITES,SET_SHOW_FAVOURITES} from "../actions";
 
 
 const initialMoviesState={
@@ -18,7 +18,7 @@ export  function movies(state=initialMoviesState,action){
     // }
     // return state;
     // we can use if else but generally switch case is used
-    console.log(action.type,"<->",state);//action me gatbage value jaega
+    console.log(action.type,"<->",state,'<->',action);//action me gatbage value jaega
     switch(action.type)
     {
         case ADD_MOVIES:
@@ -44,21 +44,43 @@ export  function movies(state=initialMoviesState,action){
                 ...state,
                 showFavourites:action.val
             }
+            case ADD_MOVIE_TO_LIST:
+                return {
+                    ...state,
+                    list:[action.movie,...state.list]
+                }
         default:
             return state;
     }
 }
 
 const initialSearchState={
-    result:{}
+    result:{},
+    showSearchResults:false
 };
 
 export function search(state=initialSearchState,action)
 {
     //define search reduces by the action passed here
     //we dont't have any case her now
-
-    return state;
+     switch(action.type)
+     {
+         case ADD_SEARCH_RESULT:
+             console.log( "resdsdds",action.movie);
+           return {
+               ...state,
+               result:action.movie,
+               showSearchResults:true
+           }
+         case ADD_MOVIE_TO_LIST:
+            return {
+                ...state,
+                showSearchResults:false
+            }
+         default:
+            return state;
+     }
+    
 }
 
 // const initialRootState={
@@ -83,4 +105,4 @@ export default combineReducers({
    movies:movies,
    search:search
    //just passing the reference of reducers
-});
+},console.log("hii"));

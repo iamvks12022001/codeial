@@ -5,8 +5,10 @@ import Navbar from './Navbar';
 import MovieCard from './MovieCard';
 import { addMovies,setShowFavourites } from '../actions';
 
+console.log("inside App.js file");
 class App extends React.Component {
 
+ 
   componentDidMount(){
     // make api call to add movies to store
     //dipatch call
@@ -40,12 +42,12 @@ class App extends React.Component {
   }
   render(){
     console.log("render");
-    const{movies}=this.props.store.getState();
+    const{movies,search}=this.props.store.getState();
   const {list,favourites,showFavourites}=movies;//now get the object
   const displayMovies=showFavourites ?favourites:list;
   return (
     <div className="App">
-     <Navbar/>
+     <Navbar dispatch={this.props.store.dispatch} search={search} /> {/* //search=this.props.store.getState().search; */}
      <div className="main">
        <div className="tabs">
           <div className={`tab ${showFavourites ? '':' active-tabs'}`} onClick={()=>this.onChangeTab(false)}>Movies</div>
