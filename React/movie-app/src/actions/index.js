@@ -70,10 +70,10 @@ export function handleMovieSearch(movie){
     const url=`http://www.omdbapi.com/?apikey=3ca5df7&t=${movie}`;
     return function(dispatch){
     fetch(url).then(response=> response.json())
-    .then(movie=>{
-        console.log('movie',movie);
+    .then(response=>{
+        console.log('respon',response);
         //dispatch an action to add movie in list but for this we need dispatch function
-        dispatch(addMovieSearchResult(movie));
+        dispatch(addMovieSearchResult(response));
      });
 
     
