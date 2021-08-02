@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import AppWrapper from './components/App';
 import './index.css';
 import thunk from 'redux-thunk';
 import {createStore,applyMiddleware} from 'redux';
@@ -47,11 +47,27 @@ console.log('store',store);
 
 // console.log('AFTER STATE ',store.getState());
 // now state get set state
+
+export const StoreContext=createContext();
+class Provider extends React.Component{
+
+  render(){
+    const {store }=this.props;
+    return (
+      <StoreContext.Provider value={store}>
+        {this.props.children}   
+        {/* the children is  basically all the component you render .
+        in this code App.js only one */}
+      </StoreContext.Provider>
+    )
+  }
+}
+console.log("Store Context",StoreContext);
 ReactDOM.render(
-  <React.StrictMode>
-   { console.log("dddd")}
-    <App store={store}/>
-  </React.StrictMode>,
+  <Provider store={store}>
+   
+    <AppWrapper/>
+  </Provider>,
   document.getElementById('root')
 );
 
