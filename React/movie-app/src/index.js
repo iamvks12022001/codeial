@@ -1,11 +1,11 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import AppWrapper from './components/App';
+import App from './components/App';
 import './index.css';
 import thunk from 'redux-thunk';
 import {createStore,applyMiddleware} from 'redux';
 import combineReducers from './reducers';
-
+import { Provider } from 'react-redux';
 //so internlly redux is calling in this way
 //logger(obj)(next)(action)
 // const logger=function({dispatch,getState}){  //useing currying
@@ -34,8 +34,7 @@ const logger=({dispatch,getState})=>(next)=>(action)=>{
 //     return;
 //   }
 //   next(action);
-// }
-console.log("hii-0");
+
 const store=createStore(combineReducers,applyMiddleware(logger,thunk));
 console.log('store',store);
 // console.log('BEFORE STATE',store.getState());
@@ -48,25 +47,60 @@ console.log('store',store);
 // console.log('AFTER STATE ',store.getState());
 // now state get set state
 
-export const StoreContext=createContext();
-class Provider extends React.Component{
+// export const StoreContext=createContext();
+// class Provider extends React.Component {
+//   render() {
+//     const { store } = this.props;
+//     return (
+//       <StoreContext.Provider value={store}>
+//         {this.props.children}
+//       </StoreContext.Provider>
+//     );
+//   }
+// }
 
-  render(){
-    const {store }=this.props;
-    return (
-      <StoreContext.Provider value={store}>
-        {this.props.children}   
-        {/* the children is  basically all the component you render .
-        in this code App.js only one */}
-      </StoreContext.Provider>
-    )
-  }
-}
-console.log("Store Context",StoreContext);
+// const connectedComponent = connect(callback)(App);
+// export function connect(callback) {
+//   return function (Component) {   
+//     class ConnectedComponent extends React.Component {
+//       constructor(props) {
+//         super(props);
+//         this.unsubscribe = this.props.store.subscribe(() => {
+//           this.forceUpdate();
+//         });
+//       }
+
+//       componentWillUnmount() {
+//         this.unsubscribe();
+//       }
+//       render() {
+//        const { store } = this.props;
+//         const state = store.getState();
+//         const dataToBeSentAsProps = callback(state);
+
+//         return <Component dispatch={store.dispatch} {...dataToBeSentAsProps} />;
+//       }
+//     }
+
+//     class ConnectedComponentWrapper extends React.Component {
+//       render() {
+//         return (
+//           <StoreContext.Consumer>
+//             {(store) => {
+//               return <ConnectedComponent store={store} />;
+//             }}
+//           </StoreContext.Consumer>
+//         );
+//       }
+//     }
+//     return ConnectedComponentWrapper;
+//   };
+// }
+// console.log("Store Context",StoreContext);
 ReactDOM.render(
   <Provider store={store}>
    
-    <AppWrapper/>
+    <App/>
   </Provider>,
   document.getElementById('root')
 );

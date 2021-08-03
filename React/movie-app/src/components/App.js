@@ -4,7 +4,8 @@ import { data } from '../data';
 import Navbar from './Navbar';
 import MovieCard from './MovieCard';
 import { addMovies, setShowFavourites } from '../actions';
-import { StoreContext } from '../index';
+import { connect } from 'react-redux';
+
 
 console.log("inside App.js file");
 class App extends React.Component {
@@ -13,17 +14,13 @@ class App extends React.Component {
   componentDidMount() {
     // make api call to add movies to store
     //dipatch call
-    console.log("CDM");
-    const { store } = this.props;
-    store.subscribe(() => {
-      console.log("UPDATED", this.props.store.getState());
-      this.forceUpdate(); // always try to not use this function
-    })
-    store.dispatch(addMovies(data));
-    console.log('STATE', this.props.store.getState());
+   
+   
+    this.props.dispatch(addMovies(data));
+    console.log('STATE', this.props);
   }
   isMovieFavourite = (movie) => {
-    const { movies } = this.props.store.getState();
+    const { movies } = this.props;
     const { favourites } = movies;
 
     const index = favourites.indexOf(movie);
@@ -38,11 +35,11 @@ class App extends React.Component {
   }
 
   onChangeTab = (val) => {
-    this.props.store.dispatch(setShowFavourites(val));
+    this.props.dispatch(setShowFavourites(val));
   }
   render() {
     console.log("render");
-    const { movies, search } = this.props.store.getState();
+    const { movies, search } = this.props;
     const { list, favourites, showFavourites } = movies;//now get the object
     const displayMovies = showFavourites ? favourites : list;
     return (
@@ -57,7 +54,7 @@ class App extends React.Component {
 
                 <div className="list">
                   {displayMovies.map((movie, index) => (
-                    <MovieCard movie={movie} key={`movies-${index}`} dispatch={this.props.store.dispatch}
+                    <MovieCard movie={movie} key={`movies-${index}`} dispatch={this.props.dispatch}
                       isFavourite={this.isMovieFavourite(movie)} /> //passing as the props
                     //we are calling the funcrtion so that mean isfavourite is either true or false
                   ))}
@@ -73,14 +70,26 @@ class App extends React.Component {
   }
 }
 
-class AppWrapper extends React.Component{
-  render(){
+// class AppWrapper extends React.Component{
+//   render(){
       
-    return(
-      <StoreContext.Consumer>
-        {(store)=> <App store={store}/>}
-      </StoreContext.Consumer>
-    )
-  }
+//     return(
+//       <StoreContext.Consumer>
+//         {(store)=> <App store={store}/>}
+//       </StoreContext.Consumer>
+//     )
+//   }
+// }
+function mapStateToProps(state){
+  return{
+    movies:state.movies,
+    search:state.movies,
+  };
 }
-export default AppWrapper;
+//this function mapStateToProps return all the data that we need to pass to App as props
+const connectedAppComponent=connect(mapStateToProps)(App);
+//first argument is function specify which data to return and second component
+//specify which class to pass this data as a props
+//and now export the return component to index.js src
+//and pls note if we make changes  in data which we passed(connect) then and then only class App re render alse not
+export default connectedAppComponent;
