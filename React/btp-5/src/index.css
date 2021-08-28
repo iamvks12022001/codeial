@@ -281,7 +281,7 @@ nav .nav-links ul li:hover {
   z-index: 100;
   max-height: 452px;
   overflow: scroll;
-  /* display: none; */
+  display: none;
 }
 .search-results ul {
   list-style-type: none;
@@ -407,6 +407,9 @@ nav .nav-links ul li:hover {
 }
 .field button:hover {
   cursor: pointer;
+}
+.field button:disabled {
+  cursor: not-allowed;
 }
 
 /* SETTINGS and USERPROFILE */
