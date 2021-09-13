@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { login } from '../action/auth';
+import { clearAuthState, login } from '../action/auth';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -9,6 +10,10 @@ class Login extends Component {
       password: '',
     };
   }
+  componentWillUnmount() {
+    this.props.dispatch(clearAuthState());
+  }
+
   handleEmailChange = (e) => {
     this.setState({
       email: e.target.value,
@@ -29,12 +34,16 @@ class Login extends Component {
     }
   };
   render() {
-    const { error, inProgress } = this.props.auth; //as auth reducers have this property
+    const { error, inProgress, isLoggedin } = this.props.auth; //as auth reducers have this property
+    const { from } = this.props.location.state || { from: { pathname: '/' } }; //if props.location not hae from
 
+    if (isLoggedin) {
+      return <Redirect to={from} />;
+    }
     return (
       <form className="login-form">
         <span className="login-signup-header">Log In</span>
-        {error && <div className="alert error-dialog">{error}</div>}
+        {error && <div className="alert error-dailog">{error}</div>}
         <div className="field">
           <input
             type="email"
