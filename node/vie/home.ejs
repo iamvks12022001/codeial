@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=locals.title%></title>
+    <link rel="stylesheet" href="/CSS/c1.css" />
+  </head>
+  <body>
+    <h1>Contact List</h1>
+    <!-- this is contact list -->
+    <div class="box">
+      <ul>
+        <% for(let i of contact_list){%>
+        <li>
+          <p><%= i.name %></p>
+          <p><%= i.phone %></p>
+        </li>
+
+        <button
+          onclick="window.location.href='/delete-contact/?id=<%= i._id%>' "
+          type="submit"
+        >
+          DEL
+        </button>
+
+        <%}%>
+      </ul>
+    </div>
+    <form action="/create-contact" method="POST">
+      <input type="text" name="name" placeholder="Enter name" required />
+      <input
+        type="number"
+        name="phone"
+        placeholder="Enter phone no."
+        required
+      />
+      <button type="submit">Add Contact</button>
+    </form>
+    <!-- action describe where you want to send data -->
+  </body>
+  <script type="text/javascript" src="/JS/j1.js"></script>
+</html>

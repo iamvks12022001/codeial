@@ -1,0 +1,28 @@
+<header id="header">
+    <div id="app-name">
+        <span>CODEIAL</span>
+    </div>
+    <div id="sign-links">
+    <% if(locals.user){  %>
+        <a href="/users/profile/<%= user.id%>">
+            <%= user.name %>
+        </a>   
+        <a href="/">
+            Home
+         </a>
+        <a href="/users/sign-out">
+           Sign out
+        </a>
+
+
+    <% }else{ %>
+        <a href="/users/sign-up">
+            sign up
+        </a>
+        <a href="/users/sign-in">
+            sign in
+        </a>
+
+    <% } %>
+    </div>
+</header>

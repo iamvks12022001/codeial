@@ -35,3 +35,9 @@ export const ADD_POST = 'ADD_POST';
 
 //comment
 export const ADD_COMMENT = 'ADD_COMMENT';
+//liking the post
+
+export const UPDATE_POST_LIKE = 'UPDATE_POST_LIKE';
+//search
+
+export const FETCH_SEARCH_RESULTS_SUCCESS = 'FETCH_SEARCH_RESULTS_SUCCESS';

@@ -5,6 +5,7 @@ import firebase from "firebase/app";
 class App  extends React.Component {
   constructor(){
     super();
+    console.log("constructor");
     this.state={
        products:[],
        loading:true
@@ -29,12 +30,13 @@ componentDidMount(){
   // })
 
   //adding listiners 
-
+  console.log("1234 outside CDM-listing");
   firebase.firestore().collection('products').orderBy('price').onSnapshot((snapshot)=>{
     console.log(snapshot);
     snapshot.docs.map((doc)=>{
     console.log(doc.data())
   });
+  console.log("1234 inside CDM-listing");
   const products=snapshot.docs.map((doc)=>{
    
    const data=doc.data();
@@ -49,7 +51,7 @@ componentDidMount(){
       
 }
 handleIncreaseQuantity=(product)=>{
-  console.log("this==>",this)
+  console.log("this==>123",this)
     console.log('heyy Please inc the qty of ',product);
    const {products}=this.state;
    const index=products.indexOf(product);
@@ -143,6 +145,7 @@ addProduct=()=>{
       })
 }
 render(){
+  console.log("render");
   const {products,loading}=this.state;
   return (
 

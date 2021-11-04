@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "create-react-app": "^4.0.3",
+    "jwt-decode": "^3.1.2",
+    "props-type": "^1.0.1",
+    "react-router-dom": "^5.2.0"
+  }
+}

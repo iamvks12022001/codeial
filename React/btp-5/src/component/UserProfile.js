@@ -23,6 +23,24 @@ class UserProfile extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const {
+      match: { params: prevParams },
+    } = prevProps;
+
+    const {
+      match: { params: currentParams },
+    } = this.props;
+
+    if (
+      prevParams &&
+      currentParams &&
+      prevParams.userId !== currentParams.userId
+    ) {
+      this.props.dispatch(fetchUserProfile(currentParams.userId));
+    }
+  }
+
   checkIfUserIsAFriend = () => {
     console.log('this.props', this.props);
     const { match, friends } = this.props;
@@ -53,14 +71,12 @@ class UserProfile extends Component {
     const data = await response.json();
 
     if (data.success) {
-      console.log('dddddss111', data);
       this.setState({
         success: true,
         successMessage: 'Added friend successfully!',
       });
 
       this.props.dispatch(addFriend(data.data.friendship));
-      //dispach to add this in redux store
     } else {
       this.setState({
         success: null,
@@ -88,12 +104,10 @@ class UserProfile extends Component {
 
     if (data.success) {
       // show user message
-      console.log('dddddss', data);
       this.setState({
         success: true,
         successMessage: 'Removed friends successfully!',
       });
-      //data in remove friends not have friendship key or not have data about that user so we have to pass Userid
       this.props.dispatch(removeFriend(match.params.userId));
     } else {
       this.setState({
