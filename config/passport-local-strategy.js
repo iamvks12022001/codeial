@@ -29,7 +29,7 @@ passport.use(
           return done(null, false);
         }
 
-        return done(null, user); //if found and passport match then through back a user to passport
+        return done(null, user); //if found and passport match then through back a user to passport serializer (which take user id which is encrypted )
       });
     }
   )
@@ -56,5 +56,26 @@ passport.deserializeUser(function (id, done) {
 //here we serialize the user by id so we have to deserialize it also by user id
 
 //we have to desearlized when browser make request from server ,
+
+// check if the user is authenticated
+passport.checkAuthentication = function (req, res, next) {
+  // if the user is signed in, then pass on the request to the next function(controller's action)
+  if (req.isAuthenticated()) {
+    return next();
+  }
+
+  // if the user is not signed in
+  return res.redirect("/users/sign-in");
+};
+
+//setting the user for view
+passport.setAuthenticatedUser = function (req, res, next) {
+  if (req.isAuthenticated()) {
+    // req.user contains the current signed in user from the session cookie and we are just sending this to the locals for the views
+    res.locals.user = req.user;
+  }
+
+  next();
+};
 
 module.exports = passport;

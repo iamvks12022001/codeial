@@ -1,20 +1,27 @@
-const express = require("express"); // to get current instance of express
+const express = require("express");
 const router = express.Router();
-const usersController = require("../controllers/users_controller"); //path to user_controller file
+const usersController = require("../controllers/users_controller");
 
-router.get("/profile", usersController.profile); //home method get imported from home_controller file
-// usersController.profile run when client want user/profile request
+const passport = require("passport");
+// to get passport file
 
-//routers for sign in and sign up
+//so now when we are signed in then then and thne only profile page
+router.get("/profile", passport.checkAuthentication, usersController.profile);
+
 router.get("/sign-up", usersController.signUp);
 router.get("/sign-in", usersController.signIn);
 
 router.post("/create", usersController.create);
-//post the data to database
 
-router.post("/create-session", usersController.createSesion);
-
+//use passportas a middleware to authenticate
+router.post(
+  "/create-session",
+  passport.authenticate("local", { failureRedirect: "/users/sign-in" }),
+  usersController.createSesion
+);
+//so basicaly what happen is that 1st passport authenticate
+//the user if it is able to do so then it call userController.createseesion
+//{which redirect to home page}
+//else if passport cant able to authenticate it will redirect to sign in page
 router.get("/sign-out", usersController.destroySession); //to sign out
-module.exports = router; // to index.js of router
-
-// sare users ke route and controllers iss file me he ha
+module.exports = router;
