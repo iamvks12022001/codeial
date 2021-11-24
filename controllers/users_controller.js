@@ -55,7 +55,7 @@ module.exports.createSesion = function (req, res) {
 };
 
 module.exports.destroySession = function (req, res) {
-  res.clearCookie("user_id");
+  req.logout(); //to delete the  cookies and logout// it is passport functionality
 
-  return res.redirect("/users/sign-in");
+  return res.redirect("/");
 };
