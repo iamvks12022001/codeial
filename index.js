@@ -12,8 +12,21 @@ const db = require("./config/mongoose");
 const expressLayouts = require("express-ejs-layouts");
 const passport = require("passport");
 
-//to connect mongo db
 const MongoStore = require("connect-mongo")(session);
+//to get sass middleware
+const sassMiddleware = require("node-sass-middleware-5");
+
+//we call it's middleware 1st as we need the css file first
+app.use(
+  sassMiddleware({
+    /* Options */
+    src: "./assets/scss", //scss folder location jisko css me convert karna ha
+    dest: "./assets/css", //convert karna ke baad kaha us code ko rakna ha
+    debug: true, //want to show error when it occur ..?
+    outputStyle: "extended", //if wanrt to show all css code in one line then use compressed else use extended for multi line
+    prefix: "/css", // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/> check in ejs pages
+  })
+);
 app.use(expressLayouts);
 app.use(express.static("./assets"));
 app.use(express.urlencoded());
@@ -23,8 +36,6 @@ app.set("layout extractScripts", true);
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
-
-//mongo store is used to store the session cookie in the db
 
 app.use(
   session({
