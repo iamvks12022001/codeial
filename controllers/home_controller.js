@@ -1,14 +1,30 @@
+const Post = require("../models/post");
+
 module.exports.home = function (req, res) {
-  // console.log(req.cookies); //show manually (reading )created cookies
+  // console.log(req.cookies);
+  // res.cookie('user_id', 25);
 
-  // res.cookie("user_id", 25); //change cookies
-  // it is send as a respose bcz cookie is a response send to browser from server after identification
-  //and can be use in to req
-  return res.render("home", {
-    title: "Home",
-  });
+  //it will only show the post content
+  // Post.find({}, function(err, posts){
+  //     return res.render('home', {
+  //         title: "Codeial | Home",
+  //         posts:  posts
+  //     });
+  // });
+
+  //if we want  to so user also then we have do little changes here
+  // populate the user of each post
+  //what we have in user is user id which is number but we
+  //want is name i.e we want to fetch user details from user_id
+  //so for that we have to pre populate the user first
+  Post.find({})
+    .populate("user")
+    .exec(function (err, posts) {
+      return res.render("home", {
+        title: "Codeial | Home",
+        posts: posts,
+      });
+    });
 };
-// we directly go to views folder ka home file pe kuyki we already set views in index.js (main)
 
-//module.exports.actionName=function(req,res){}
-// i need to give acces of home method  to the file in route
+// module.exports.actionName = function(req, res){}
