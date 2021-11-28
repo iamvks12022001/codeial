@@ -4,6 +4,6 @@ const passport = require("passport");
 
 const postsController = require("../controllers/posts_controller");
 
-router.post("/create", passport.checkAuthentication, postsController.create);
+router.post("/create", passport.checkAuthentication, postsController.create); //checking whether user is sign in or not
 
 module.exports = router;
