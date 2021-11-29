@@ -6,4 +6,6 @@ console.log("loaded");
 router.get("/", homeController.home);
 router.use("/users", require("./users"));
 router.use("/posts", require("./posts")); //for every post related command it go to posts route
+
+router.use("/comments", require("./comments"));
 module.exports = router;

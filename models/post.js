@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const postSchema = new mongoose.Schema(
   {
     content: {
@@ -6,15 +7,22 @@ const postSchema = new mongoose.Schema(
       required: true,
     },
     user: {
-      //since we link a post to user so we need to have this
-      type: mongoose.Types.ObjectId,
-      //this is for to connect to  user from Db
-      ref: "User", //we are referencing to user
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
+    // include the array of ids of all comments in this post schema itself
+    //note this is aaray
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
   },
   {
     timestamps: true,
   }
 );
+
 const Post = mongoose.model("Post", postSchema);
 module.exports = Post;
