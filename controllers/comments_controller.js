@@ -23,3 +23,27 @@ module.exports.create = function (req, res) {
     }
   });
 };
+
+//deleting a comment
+module.exports.destroy = function (req, res) {
+  Comment.findById(req.params.id, function (err, comment) {
+    let postId = comment.post;
+    Post.findById(postId, function (err, post) {
+      let userId = post.user;
+      if (post.user == req.user.id || comment.user == req.user.id) {
+        //again checkinga as view me log inspect karke v call karsakte ha
+        comment.remove();
+        let postId = comment.post;
+        Post.findByIdAndUpdate(
+          postId,
+          { $pull: { comments: req.params.id } }, //basically deleting that comment id from post schema
+          function (err, post) {
+            return res.redirect("back");
+          }
+        );
+      } else {
+        return res.redirect("back");
+      }
+    });
+  });
+};

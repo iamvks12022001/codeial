@@ -20,12 +20,20 @@
       <% for(post of posts){ %>
 
       <li>
+        <small> <%= post.user.name %> </small>
+        <br/>
         <p>
           <%= post.content %>
-          <br />
-          <small> <%= post.user.name %> </small>
+          
+         
         </p>
-        <!-- if user is signin then then only t will show comment form -->
+          <!--checking if current logged in user id with the user id who created the post-->
+          <%  if( locals.user && locals.user.id == post.user.id){ %>
+            <a href="/posts/destroy/<%= post._id %>">x</a>
+            
+            <%  }  %>
+            </p>
+       
         <div class="post-comments">
           <% if (locals.user){ %>
           <form action="/comments/create" method="POST">
@@ -36,12 +44,12 @@
               required
             />
             <input type="hidden" name="post" value="<%= post._id %>" />
-            <!-- to send the id of the post  (it is hidden input) -->
+       
             <input type="submit" value="Add Comment" />
           </form>
 
           <% } %>
-          <!--viewing the comments-->
+       
           <div class="post-comments-list">
             <ul id="post-comments-<%= post._id %>">
               <% for (comment of post.comments){%>
@@ -50,7 +58,15 @@
                 <%= comment.content %>
                 <br />
                 <small> <%= comment.user.name %> </small>
-                <!--use this after populating user in comment schema-->
+             <!--1st checking ki user login ha ki nhi and (user ya to comment karne walo hona chahiya ya phir jisna 
+              post banaya ho oo hona chahiya)-->
+                <div>
+                  <% if(locals.user && ((locals.user.id == comment.user.id )||( locals.user.id == post.user.id))){ %>
+                      <a href="/comments/destroy/<%= comment._id %>">x</a>
+                      
+                  <% } %>
+              </div>
+
               </p>
               <%} %>
             </ul>
