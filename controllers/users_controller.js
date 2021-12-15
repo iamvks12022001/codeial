@@ -1,5 +1,6 @@
 const User = require("../models/user");
 
+//let keep the profile functon same as it doen not have so mush nested ,only 1 callback
 module.exports.profile = function (req, res) {
   User.findById(req.params.id, function (err, user) {
     return res.render("profile", {
@@ -8,6 +9,8 @@ module.exports.profile = function (req, res) {
     });
   });
 };
+
+//let keep the upadate functon same as it doen not have so mush nested only 1 call back
 
 module.exports.update = function (req, res) {
   if (req.user.id == req.params.id) {
