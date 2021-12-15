@@ -1,21 +1,17 @@
 const Post = require("../models/post");
-//getting comment also so that with it's post all it's comment also get deleted
 const Comment = require("../models/comment");
 
 module.exports.create = async function (req, res) {
   try {
-    await Post.create(
-      //it is actually saving in database
-      {
-        content: req.body.content,
-        user: req.user._id,
-      }
-    );
-
+    await Post.create({
+      content: req.body.content,
+      user: req.user._id,
+    });
+    req.flash("success", "Post published");
     return res.redirect("back");
   } catch (error) {
-    console.log("error ", error);
-    return;
+    req.flash("error", error);
+    return res.redirect("back");
   }
 };
 module.exports.destroy = async function (req, res) {
@@ -26,13 +22,14 @@ module.exports.destroy = async function (req, res) {
       post.remove();
 
       await Comment.deleteMany({ post: req.params.id });
-
+      req.flash("success", "Post associated comments deleted !!");
       return res.redirect("back");
     } else {
+      req.flash("eror", "you cannot delete this post");
       return res.redirect("back");
     }
   } catch (error) {
-    console.log("error ", error);
-    return;
+    req.flash("eror", error);
+    return res.redirect("back");
   }
 };

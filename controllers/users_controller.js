@@ -1,6 +1,5 @@
 const User = require("../models/user");
 
-//let keep the profile functon same as it doen not have so mush nested ,only 1 callback
 module.exports.profile = function (req, res) {
   User.findById(req.params.id, function (err, user) {
     return res.render("profile", {
@@ -9,8 +8,6 @@ module.exports.profile = function (req, res) {
     });
   });
 };
-
-//let keep the upadate functon same as it doen not have so mush nested only 1 call back
 
 module.exports.update = function (req, res) {
   if (req.user.id == req.params.id) {
@@ -24,7 +21,7 @@ module.exports.update = function (req, res) {
 
 module.exports.signUp = function (req, res) {
   if (req.isAuthenticated()) {
-    return res.redirect("/users/profile" + req.user.id); // fixing the profile link issues
+    return res.redirect("/users/profile" + req.user.id);
   }
   return res.render("user_sign_up", {
     title: "iCoder | Sign Up",
@@ -67,11 +64,14 @@ module.exports.create = function (req, res) {
 // sign in that is create the session
 
 module.exports.createSesion = function (req, res) {
+  req.flash("success", "Logged in Successfully");
+  //setting the flash object as a key value pair
   return res.redirect("/users/profile/" + req.user.id); //to redirect to profile page
 };
 
 module.exports.destroySession = function (req, res) {
   req.logout();
-
+  req.flash("success", "You have logged Out");
+  //setting the flash object as akey valu pair
   return res.redirect("/");
 };
