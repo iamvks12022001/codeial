@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="/css/home.css" />
 <h1>Codeial / <%= title %></h1>
-<!--adding home..css and making div for home-container-->
 <div id="home-container">
   <section id="feed-posts">
     <h4>Posts</h4>
@@ -23,12 +22,10 @@
       </ul>
     </div>
  
-<!--currently all users is his/her friends-->
     <section id="user-friends">
       <h4>Friends</h4>
       <% for(u of all_users){ %>
        <a href="/users/profile/<%= u._id%>">
-            <!--displaying all the users  -->
            <div>
                <%= u.name%>
            </div>
@@ -37,3 +34,6 @@
       <% } %>
     </section>
 </div>
+<script src="/js/home_posts.js"> //conneting to assets file
+
+</script>
