@@ -6,7 +6,8 @@ module.exports.home = async function (req, res) {
   //which declare that it's is async function
 
   try {
-    let posts = await Post.find({}) //telling to wait for it'd complete execution
+    let posts = await Post.find({})
+      .sort("-createdAt") //sorting based on time of creatino of post....later created apper first
       .populate("user")
       .populate({
         path: "comments",

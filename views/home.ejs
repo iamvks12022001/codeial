@@ -18,22 +18,23 @@
 
     <div id="posts-list-container">
       <ul>
-        <% for(post of posts){ %> <%- include('_post');%> <%} %>
+        <% for(post of posts){ %> <%- include('_post') -%> <%} %>
       </ul>
     </div>
- 
-    <section id="user-friends">
-      <h4>Friends</h4>
-      <% for(u of all_users){ %>
-       <a href="/users/profile/<%= u._id%>">
-           <div>
-               <%= u.name%>
-           </div>
-      
-       </a>
-      <% } %>
-    </section>
+  </section>
+  <section id="user-friends">
+    <h4>Friends</h4>
+    <% for(u of all_users){ %>
+    <a href="/users/profile/<%= u._id%>">
+      <div><%= u.name%></div>
+    </a>
+    <% } %>
+  </section>
 </div>
-<script src="/js/home_posts.js"> //conneting to assets file
 
+<script src="/js/home_post_comments.js">
+  //conneting 2 nd assets of js file
+</script>
+<script src="/js/home_posts.js">
+  //conneting to assets file
 </script>

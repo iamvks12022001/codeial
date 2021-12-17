@@ -1,5 +1,6 @@
-
-      <li>
+  <!--set the id of the post-->
+  
+      <li id="post-<%= post._id%>">
         <small> <%= post.user.name %> </small>
         <br/>
         <p>
@@ -7,16 +8,16 @@
           
          
         </p>
-          <!--checking if current logged in user id with the user id who created the post-->
           <%  if( locals.user && locals.user.id == post.user.id){ %>
-            <a href="/posts/destroy/<%= post._id %>">x</a>
-            
+            <a class="delete-post-button" href="/posts/destroy/<%= post._id %>">x</a>
+            <!--set class name of the button-->
             <%  }  %>
             </p>
        
         <div class="post-comments">
           <% if (locals.user){ %>
-          <form action="/comments/create" method="POST">
+          <!-- let's give an id to the new comment form, we'll also need to make the same changes in home_posts.js where we're adding a post to the page -->
+          <form id="post-<%= post._id %>-comments-form" action="/comments/create" method="POST">
             <input
               type="text"
               name="content"

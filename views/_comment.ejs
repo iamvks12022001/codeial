@@ -1,16 +1,16 @@
-<li>
-<p>
-    <%= comment.content %>
+<li id="comment-<%= comment._id %>">
+  <p>
+    <% if (locals.user && locals.user.id == comment.user.id){ %>
+
+    <small>
+      <a
+        class="delete-comment-button"
+        href="/comments/destroy/<%= comment.id %>"
+        >X</a
+      >
+    </small>
+    <% } %> <%= comment.content %>
     <br />
     <small> <%= comment.user.name %> </small>
- <!--1st checking ki user login ha ki nhi and (user ya to comment karne walo hona chahiya ya phir jisna 
-  post banaya ho oo hona chahiya)-->
-    <div>
-      <% if(locals.user && ((locals.user.id == comment.user.id )||( locals.user.id == post.user.id))){ %>
-          <a href="/comments/destroy/<%= comment._id %>">x</a>
-          
-      <% } %>
-  </div>
-
   </p>
 </li>
