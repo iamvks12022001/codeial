@@ -9,12 +9,32 @@ module.exports.profile = function (req, res) {
   });
 };
 
-module.exports.update = function (req, res) {
+//converting it to asyn function
+module.exports.update = async function (req, res) {
   if (req.user.id == req.params.id) {
-    User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
-      return res.redirect("/");
-    });
+    try {
+      let user = await User.findByIdAndUpdate(req.params.id);
+      User.uploadedAvatar(req, res, function (err) {
+        if (err) {
+          console.log("*** MUTLER ERROR", err);
+        }
+
+        //  console.log(req.file);
+        user.name = req.body.name;
+        user.email = req.body.email;
+        if (req.file) {
+          //this is saving the path of the uploaded file into the avatar field of user
+          user.avatar = User.avatarPath + "/" + req.file.filename;
+        }
+        user.save();
+        return res.redirect("back");
+      });
+    } catch (error) {
+      req.flash("error", error);
+      return res.redirect("back");
+    }
   } else {
+    req.flash("error", "Unauthorized");
     return res.status(401).send("Unauthorised");
   }
 };
@@ -61,17 +81,14 @@ module.exports.create = function (req, res) {
     }
   });
 };
-// sign in that is create the session
 
 module.exports.createSesion = function (req, res) {
   req.flash("success", "Logged in Successfully");
-  //setting the flash object as a key value pair
   return res.redirect("/users/profile/" + req.user.id); //to redirect to profile page
 };
 
 module.exports.destroySession = function (req, res) {
   req.logout();
   req.flash("success", "You have logged Out");
-  //setting the flash object as akey valu pair
   return res.redirect("/");
 };

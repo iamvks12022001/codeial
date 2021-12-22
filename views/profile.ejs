@@ -1,10 +1,13 @@
 <link rel="stylesheet" href="/css/user_profile.css" />
 <h1>Codeial / <%=title%></h1>
-<!-- locals.user contains current logged in user  -->
-<!-- user is here accessible bcoz of user.locals.user=req.user -->
+
 <% if(user.id==profile_user.id){ %>
-<!-- if user matches then show the form -->
-<form action="/users/update/<%= profile_user._id%>" method="POST">
+<!--set encrypt type as multpart-->
+<form
+  action="/users/update/<%= profile_user._id%>"
+  enctype="multipart/form-data"
+  method="POST"
+>
   <input
     type="text"
     name="name"
@@ -19,10 +22,11 @@
     value="<%= profile_user.email %>"
     required
   />
+  <input type="file" name="avatar" placeholder="Profile pic" />
+  <!--take input for file-->
   <input type="submit" value="Update" />
 </form>
 <% }else{ %>
-<!-- else show only the profile info -->
 <h1>Name : <%= profile_user.name%></h1>
 <h1>Email : <%= profile_user.email%></h1>
 <% } %>
