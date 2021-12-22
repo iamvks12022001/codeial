@@ -31,6 +31,11 @@ app.use(expressLayouts);
 app.use(express.static("./assets"));
 app.use(express.urlencoded());
 app.use(cookieParser());
+
+//route to connect upload file to see profile pic
+app.use("/uploads", express.static(__dirname + "/uploads"));
+//make the uploades path avl to the browser
+
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
 
