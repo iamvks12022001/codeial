@@ -6,6 +6,8 @@ const session = require("express-session");
 
 const password = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
+//get passort jwt
+const passportJWT = require("./config/passport-jwt-strategy");
 
 const cookieParser = require("cookie-parser");
 const db = require("./config/mongoose");

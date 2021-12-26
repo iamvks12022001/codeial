@@ -1,8 +1,8 @@
-//to show all post from database
 const Post = require("../../../models/post");
+const Comment = require("../../../models/comment");
 module.exports.index = async function (req, res) {
   let posts = await Post.find({})
-    .sort("-createdAt") //sorting based on time of creatino of post....later created apper first
+    .sort("-createdAt")
     .populate("user")
     .populate({
       path: "comments",
@@ -10,30 +10,34 @@ module.exports.index = async function (req, res) {
         path: "user",
       },
     });
+
   return res.json(200, {
-    message: "List of Posts",
+    message: "List of posts",
     posts: posts,
   });
 };
 
-//to delete the post via api call
-const Comment = require("../../../models/comment");
 module.exports.destroy = async function (req, res) {
   try {
     let post = await Post.findById(req.params.id);
 
-    post.remove();
+    if (post.user == req.user.id) {
+      post.remove();
 
-    await Comment.deleteMany({ post: req.params.id });
-    //it will get the post from home_poage.js from js file
-    //and send to the local
+      await Comment.deleteMany({ post: req.params.id });
 
-    return res.json(200, {
-      message: "post and assosiated comment deleted succesfully !",
-    });
-  } catch (error) {
+      return res.json(200, {
+        message: "Post and associated comments deleted successfully!",
+      });
+    } else {
+      return res.json(401, {
+        message: "You cannot delete this post!",
+      });
+    }
+  } catch (err) {
+    console.log("********", err);
     return res.json(500, {
-      message: "internal server error",
+      message: "Internal Server Error",
     });
   }
 };
