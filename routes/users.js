@@ -1,20 +1,46 @@
-const express = require("express"); // to get current instance of express
+const express = require("express");
 const router = express.Router();
-const usersController = require("../controllers/users_controller"); //path to user_controller file
+const usersController = require("../controllers/users_controller");
 
-router.get("/profile", usersController.profile); //home method get imported from home_controller file
-// usersController.profile run when client want user/profile request
+const passport = require("passport");
 
-//routers for sign in and sign up
+//now profile page cant be accessed without proper sign in
+//this is because of  middleware added in this route
+router.get(
+  "/profile/:id",
+  passport.checkAuthentication,
+  usersController.profile
+);
+//profile update route
+router.post(
+  "/update/:id",
+  passport.checkAuthentication,
+  usersController.update
+);
+
 router.get("/sign-up", usersController.signUp);
 router.get("/sign-in", usersController.signIn);
 
 router.post("/create", usersController.create);
-//post the data to database
 
-router.post("/create-session", usersController.createSesion);
+router.post(
+  "/create-session",
+  passport.authenticate("local", { failureRedirect: "/users/sign-in" }),
+  usersController.createSesion
+);
 
-router.get("/sign-out", usersController.destroySession); //to sign out
-module.exports = router; // to index.js of router
+router.get("/sign-out", usersController.destroySession);
 
-// sare users ke route and controllers iss file me he ha
+router.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+); //route when user click on sign in with google
+//scope is a information which are we looking to get from google
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/users/sign-in" }),
+  usersController.createSesion
+);
+//route at which we recieve the data from google ad redirect to home page after successfull communication with google
+
+module.exports = router;

@@ -1,14 +1,32 @@
-module.exports.home = function (req, res) {
-  // console.log(req.cookies); //show manually (reading )created cookies
+const Post = require("../models/post");
+//getting User schema
+const User = require("../models/user");
 
-  // res.cookie("user_id", 25); //change cookies
-  // it is send as a respose bcz cookie is a response send to browser from server after identification
-  //and can be use in to req
-  return res.render("home", {
-    title: "Home",
-  });
+module.exports.home = async function (req, res) {
+  //which declare that it's is async function
+
+  try {
+    let posts = await Post.find({})
+      .sort("-createdAt") //sorting based on time of creatino of post....later created apper first
+      .populate("user")
+      .populate({
+        path: "comments",
+        populate: {
+          path: "user",
+        },
+      });
+
+    // getting all the user and then passing it to the home page for rendering
+
+    let users = await User.find({}); //waiting till it get all the users
+
+    return res.render("home", {
+      title: "Codeial | Home",
+      posts: posts,
+      all_users: users,
+    });
+  } catch (error) {
+    console.log("error", error);
+    return;
+  }
 };
-// we directly go to views folder ka home file pe kuyki we already set views in index.js (main)
-
-//module.exports.actionName=function(req,res){}
-// i need to give acces of home method  to the file in route

@@ -1,3 +1,23 @@
-<footer>
-    Bye end karo !!
+<footer id="layout-footer">
+  <div>
+    <p>&#169; Coding Ninjas. All Rights Reserved</p>
+  </div>
+
+  <div>
+    <nav class="footer-nav">
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <!--fixing ,,,abb footer se v profile call kar sakte ha-->
+          <%if(locals.user) { %>
+          <a href="/users/profile/<%= user.id %>">Profile</a>
+          <% } else { %>
+          <a href="/users/sign-in">Sign In</a>
+          <% } %>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </footer>

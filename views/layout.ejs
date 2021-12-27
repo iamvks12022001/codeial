@@ -1,23 +1,47 @@
 <html>
-    <head>
-        <title>
-            <%=title%>
-        </title>
-        <link rel="stylesheet" href="/css/layout.css">
-        <!-- too add static file -->
+  <head>
+    <title><%=title%></title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <!--include jquerry-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <!-- too add static file -->
 
-       <%- style %>       
-       <!--to add css link in head not in body -->
-    </head>
-    <body>
-        <%- include('_header');%> 
-        <%- body %> 
-        <!-- body is keyword to specify that,that is a the variable part -->
-        <%- include('_footer');%>
+    <%- style %>
+  </head>
+  <body>
+    <%- include('_header');%>
 
-        <%- script %>    
-           <!--to add js link in head not in body -->
-    </body>
+    <main id="layout-main"><%- body %></main>
+
+    <%- include('_footer'); %> <%- script %>
+
+    <script>
+      <% if(flash.success && flash.success.length > 0){ %>
+       new Noty({
+           theme:'relax' ,
+           text:"<%=flash.success%>",
+           type:'success',
+           layout:'topRight',
+           timeout :1500
+       }).show();
+       <% } %>
+
+       <% if(flash.error && flash.error.length > 0){ %>
+       new Noty({
+           theme:'relax' ,
+           text:"<%=flash.error%>",
+           type:'error',
+           layout:'topRight',
+           timeout :1500
+       }).show();
+       <%} %>
+    </script>
+  </body>
 </html>
-
-<!-- above all are common code -->
