@@ -1,22 +1,24 @@
 const Comment = require("../models/comment");
 const Post = require("../models/post");
-
+//accquire comment mailer
+const commentMailer = require("../mailers/comments_mailer");
 module.exports.create = async function (req, res) {
   try {
     let post = await Post.findById(req.body.post);
     if (post) {
       let comment = await Comment.create({
-        content: req.body.content, //actualle content
-        post: req.body.post, //asically post id
-        user: req.user._id, //jisne comment kiya ha uska id
+        content: req.body.content,
+        post: req.body.post,
+        user: req.user._id,
       });
       post.comments.push(comment);
       post.save();
 
+      //now we have to populate the comment not just only when req is of xhr type only
+      comment = await comment.populate("user", "name email").execPopulate();
+      //now call the mailer
+      commentMailer.newComment(comment);
       if (req.xhr) {
-        // Similar for comments to fetch the user's id!
-        comment = await comment.populate("user", "name").execPopulate();
-
         return res.status(200).json({
           data: {
             comment: comment,
