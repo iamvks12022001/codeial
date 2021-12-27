@@ -30,4 +30,17 @@ router.post(
 );
 
 router.get("/sign-out", usersController.destroySession);
+
+router.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+); //route when user click on sign in with google
+//scope is a information which are we looking to get from google
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/users/sign-in" }),
+  usersController.createSesion
+);
+//route at which we recieve the data from google ad redirect to home page after successfull communication with google
+
 module.exports = router;

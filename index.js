@@ -13,6 +13,8 @@ const cookieParser = require("cookie-parser");
 const db = require("./config/mongoose");
 const expressLayouts = require("express-ejs-layouts");
 const passport = require("passport");
+//get googgle startegy here
+const passportGoogle = require("./config/passport-google-oauth2-strategy");
 
 const MongoStore = require("connect-mongo")(session);
 const sassMiddleware = require("node-sass-middleware-5");
