@@ -1,6 +1,8 @@
 const Comment = require("../models/comment");
 const Post = require("../models/post");
-//accquire comment mailer
+//import like
+const Like = require("../models/like");
+
 const commentMailer = require("../mailers/comments_mailer");
 module.exports.create = async function (req, res) {
   try {
@@ -14,9 +16,7 @@ module.exports.create = async function (req, res) {
       post.comments.push(comment);
       post.save();
 
-      //now we have to populate the comment not just only when req is of xhr type only
       comment = await comment.populate("user", "name email").execPopulate();
-      //now call the mailer
       commentMailer.newComment(comment);
       if (req.xhr) {
         return res.status(200).json({
@@ -50,7 +50,10 @@ module.exports.destroy = async function (req, res) {
       comment.remove();
       let postId = comment.post;
       Post.findByIdAndUpdate(postId, { $pull: { comments: req.params.id } });
-      // send the comment id which was deleted back to the views
+
+      //changes :: delete the associated likes for the comments
+      await Like.deleteMany({ likeable: comment._id, onModel: "Comment" });
+
       if (req.xhr) {
         return res.status(200).json({
           data: {

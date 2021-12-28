@@ -1,25 +1,26 @@
 const Post = require("../models/post");
-//getting User schema
+
 const User = require("../models/user");
 
 module.exports.home = async function (req, res) {
-  //which declare that it's is async function
-
   try {
+    //changes ::populate the likes of each post and comments
     let posts = await Post.find({})
-      .sort("-createdAt") //sorting based on time of creatino of post....later created apper first
+      .sort("-createdAt")
       .populate("user")
       .populate({
         path: "comments",
         populate: {
           path: "user",
         },
-      });
+        populate: {
+          //here as well
+          path: "likes",
+        },
+      })
+      .populate("likes"); //here it is
 
-    // getting all the user and then passing it to the home page for rendering
-
-    let users = await User.find({}); //waiting till it get all the users
-
+    let users = await User.find({});
     return res.render("home", {
       title: "Codeial | Home",
       posts: posts,

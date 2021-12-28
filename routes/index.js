@@ -11,4 +11,8 @@ router.use("/posts", require("./posts")); //for every post related command it go
 router.use("/api", require("./api"));
 
 router.use("/comments", require("./comments"));
+
+//route for like
+router.use("/likes", require("./likes"));
+
 module.exports = router;
