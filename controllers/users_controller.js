@@ -1,5 +1,4 @@
 const User = require("../models/user");
-//module required to delete the file
 const fs = require("fs");
 const path = require("path");
 
@@ -12,7 +11,6 @@ module.exports.profile = function (req, res) {
   });
 };
 
-//converting it to asyn function
 module.exports.update = async function (req, res) {
   if (req.user.id == req.params.id) {
     try {
@@ -22,16 +20,13 @@ module.exports.update = async function (req, res) {
           console.log("*** MUTLER ERROR", err);
         }
 
-        //  console.log(req.file);
         user.name = req.body.name;
         user.email = req.body.email;
         if (req.file) {
-          //if profile pic is already avl then delete that pic
           if (user.avatar) {
             fs.unlinkSync(path.join(__dirname, "..", user.avatar));
           }
-          //above line of code give error whenwe upload pic for 1st time--so for that just uncomment tose line
-          //this is saving the path of the uploaded file into the avatar field of user
+
           user.avatar = User.avatarPath + "/" + req.file.filename;
         }
         user.save();
