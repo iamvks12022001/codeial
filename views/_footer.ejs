@@ -10,12 +10,7 @@
           <a href="/">Home</a>
         </li>
         <li>
-          <!--fixing ,,,abb footer se v profile call kar sakte ha-->
-          <%if(locals.user) { %>
-          <a href="/users/profile/<%= user.id %>">Profile</a>
-          <% } else { %>
-          <a href="/users/sign-in">Sign In</a>
-          <% } %>
+          <a href="/users/profile">Profile</a>
         </li>
       </ul>
     </nav>
