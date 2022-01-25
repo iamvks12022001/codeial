@@ -1,15 +1,57 @@
 #layout-footer {
   color: white;
-  background: grey;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  background: black;
   padding: 5px 10px;
   display: flex;
   justify-content: flex-start;
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%; }
+  #layout-footer .content {
+    max-width: 1350px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 5%;
+    justify-content: space-between; }
+    #layout-footer .content .box {
+      width: 40%;
+      transition: all 0.4s ease; }
+    #layout-footer .content .topic {
+      font-size: 22px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 16px; }
+    #layout-footer .content p {
+      text-align: justify; }
+    #layout-footer .content .middle {
+      padding-left: 80px; }
+    #layout-footer .content .middle a {
+      line-height: 32px; }
+    #layout-footer .content p,
+    #layout-footer .content a {
+      color: #fff; }
+  #layout-footer .bottom {
+    width: 100%;
+    text-align: right;
+    color: #d9d9d9;
+    padding: 0 40px 5px 0; }
+  #layout-footer .bottom a {
+    color: #eb2f06; }
+  #layout-footer a {
+    transition: all 0.3s ease; }
+  #layout-footer a:hover {
+    color: #eb2f06; }
   #layout-footer a {
     color: white;
     text-decoration: none; }
-  #layout-footer .footer-nav ul {
+  #layout-footer .bottom ul {
     list-style: none; }
+  #layout-footer .bottom .lower .topic {
+    margin: 24px 0 5px 0; }
+  #layout-footer .bottom .lower i {
+    padding-right: 16px; }

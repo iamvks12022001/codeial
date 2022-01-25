@@ -1,18 +1,46 @@
 <footer id="layout-footer">
   <div>
-    <p>&#169; Coding Ninjas. All Rights Reserved</p>
+    <nav class="footer-nav"></nav>
   </div>
+  <div class="content">
+    <div class="left box">
+      <div class="upper">
+        <div class="topic">About me</div>
+        <p>
+          I am Vikash Kumar Singh 3rd year student from IIIT Pune ( CSE
+          Department )
+        </p>
+      </div>
+    </div>
 
-  <div>
-    <nav class="footer-nav">
+    <div class="middle box">
+      <div class="topic">Contact us</div>
+      <div class="phone">
+        <a href="#"><i class="fas fa-phone-volume"></i>+91 7970835182</a>
+      </div>
+      <div class="email">
+        <a href="#"
+          ><i class="fas fa-envelope"></i>vikashkumarsingh19@cse.iiitp.ac.in
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <p>Project Done By <a href="#">Vikash</a></p>
+    <div class="lower">
       <ul>
         <li>
-          <a href="/">Home</a>
+          <a href="/"> Go To Home Page</a>
         </li>
         <li>
-          <a href="/users/profile">Profile</a>
+          <% if(locals.user){ %>
+          <a href="/users/profile">Check Profile</a>
+
+          <%}else {%>
+          <a href="/users/sign-in">Check Profile</a>
+          <%}%>
         </li>
       </ul>
-    </nav>
+    </div>
   </div>
 </footer>
