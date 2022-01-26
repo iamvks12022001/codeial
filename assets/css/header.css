@@ -16,15 +16,14 @@
     margin: 5% 5px;
     display: flex; }
     #layout-header nav .auth-links ul li {
-      margin-right: 10px;
-      margin-left: 25px; }
+      margin-right: 10px; }
       #layout-header nav .auth-links ul li a {
         text-decoration: none;
-        color: #fff; }
+        color: #fff;
+        padding: 10px; }
       #layout-header nav .auth-links ul li a:hover {
         background-color: #101111;
-        border-radius: 41%;
-        padding: 10px; }
+        border-radius: 41%; }
   #layout-header nav .search-container {
     flex-grow: 0.5;
     /* padding: 0 20px; */
