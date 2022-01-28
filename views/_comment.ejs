@@ -1,18 +1,22 @@
 <link rel="stylesheet" href="/css/comment.css" />
 <div class="post-comment-item" id="comment-<%= comment._id %>">
   <div class="post-comment-header">
-    <% if (locals.user && locals.user.id == comment.user.id){ %>
-
     <small>
-      <a
-        class="delete-comment-button"
-        href="/comments/destroy/<%= comment.id %>"
-        >X</a
-      >
-    </small>
-    <% } %>
+      <% if(locals.user && locals.user.id == comment.user._id ){%>
 
-    <small> <%= comment.user.name %> </small>
+      <button>
+        <a
+          class="delete-comment-button"
+          href="/comments/destroy/<%= comment.id %>"
+          >X</a
+        >
+      </button>
+      <% } %>
+    </small>
+    <%= (comment.user._id );%>
+    <!-- //why  ia m not getting name -->
+    <!-- <%=(locals.user);%> -->
+    <small> <%= (comment.user.name) %> </small>
     <!-- CHANGE :: display the likes of this comment, if the user is logged in, then show the link to toggle likes, else, just show the count -->
     <!-- study about the data attribute -->
 
