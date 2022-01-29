@@ -12,7 +12,8 @@
         data: newPostForm.serialize(),
         success: function (data) {
           let newPost = newPostDom(data.data.post);
-          $("#posts-list-container>ul").prepend(newPost);
+          $("#posts-list-container").prepend(newPost);
+          //#posts-list-container>ul
           deletePost($(" .delete-post-button", newPost));
 
           // call the create comment class
@@ -39,45 +40,119 @@
   // method to create a post in DOM
   let newPostDom = function (post) {
     // CHANGE :: show the count of zero likes on this post
-    return $(`<li id="post-${post._id}">
-                <p>
-                    
-                    <small>
-                        <a class="delete-post-button"  href="/posts/destroy/${post._id}">X</a>
-                    </small>
-                   
-                    ${post.content}
-                    <br>
-                    <small>
-                    ${post.user.name}
-                    </small>
-                    <br>
-                    <small>
-                        
-                            <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
-                                0 Likes
-                            </a>
-                        
-                    </small>
+    // return $(`<li id="post-${post._id}">
+    //             <p>
 
-                </p>
-                <div class="post-comments">
-                    
-                        <form id="post-${post._id}-comments-form" action="/comments/create" method="POST">
-                            <input type="text" name="content" placeholder="Type Here to add comment..." required>
-                            <input type="hidden" name="post" value="${post._id}" >
-                            <input type="submit" value="Add Comment">
-                        </form>
-           
-            
-                    <div class="post-comments-list">
-                        <ul id="post-comments-${post._id}">
-                            
-                        </ul>
-                    </div>
-                </div>
-                
-            </li>`);
+    //                 <small>
+    //                     <a class="delete-post-button"  href="/posts/destroy/${post._id}">X</a>
+    //                 </small>
+
+    //                 ${post.content}
+    //                 <br>
+    //                 <small>
+    //                 ${post.user.name}
+    //                 </small>
+    //                 <br>
+    //                 <small>
+
+    //                         <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
+    //                             0 Likes
+    //                         </a>
+
+    //                 </small>
+
+    //             </p>
+    //             <div class="post-comments">
+
+    //                     <form id="post-${post._id}-comments-form" action="/comments/create" method="POST">
+    //                         <input type="text" name="content" placeholder="Type Here to add comment..." required>
+    //                         <input type="hidden" name="post" value="${post._id}" >
+    //                         <input type="submit" value="Add Comment">
+    //                     </form>
+
+    //                 <div class="post-comments-list">
+    //                     <ul id="post-comments-${post._id}">
+
+    //                     </ul>
+    //                 </div>
+    //             </div>
+
+    //         </li>`);
+
+    return `
+    <div class="post-wrapper" id="post-${post._id}">
+  <div class="post-header">
+    <div class="post-avatar">
+      <img
+        src="https://cdn-icons.flaticon.com/png/128/3177/premium/3177440.png?token=exp=1643293065~hmac=661ebff7dbbf539c5141d2795f93a378"
+        alt="user-pic"
+      />
+
+      <div>
+        <span class="post-author"> ${post.user.name}</span>
+        <span class="post-time">a minute ago</span>
+      </div>
+    </div>
+
+    <div class="post-content">${post.content}</div>
+
+    <div class="post-actions">
+      
+      <small class="post-like">
+        <img
+          src="https://cdn-icons.flaticon.com/png/512/210/premium/210545.png?token=exp=1643293212~hmac=60f900047914e3528898eb90e89cf2cd"
+          alt="like-icon"
+        />
+        
+        <a
+          class="toggle-like-button"
+          data-likes="0"
+          href="/likes/toggle/?id=${post._id}&type=Post"
+        >
+          0 Likes
+        </a>
+        
+      </small>
+      <div class="post-comments-icon">
+        <img
+          src="https://cdn-icons.flaticon.com/png/128/4014/premium/4014104.png?token=exp=1643293150~hmac=0b72e94ef396f41074147bc78eaa4f57"
+          alt="comments-icon"
+        />
+        <span> 0</span>
+      </div>
+      
+      <a class="delete-post-button" href="/posts/destroy/${post._id}"
+        ><img
+          src="https://cdn-icons.flaticon.com/png/128/2874/premium/2874821.png?token=exp=1643293372~hmac=327114326c165d8f6785d83b16f400e0"
+          alt="delete-icon"
+      /></a>
+      
+    </div>
+    <div class="post-comment-box">
+     
+      <form
+        id="post-${post._id}-comments-form"
+        action="/comments/create"
+        method="POST"
+      >
+        <input
+          type="text"
+          name="content"
+          placeholder="Type Here to add comment..."
+          required
+        />
+        <input type="hidden" name="post" value="${post._id}" />
+
+        <input type="submit" value="Add Comment" />
+      </form>
+    </div>
+    <div class="post-comments-list" id="post-comments-${post._id}">
+     
+    </div>
+  </div>
+</div>
+
+    `;
   };
 
   // method to delete a post from DOM

@@ -2,7 +2,7 @@
 <div class="post-comment-item" id="comment-<%= comment._id %>">
   <div class="post-comment-header">
     <small>
-      <% if(locals.user && locals.user.id == comment.user._id ){%>
+      <% if(locals.user && locals.user.id == comment.user.id ){%>
 
       <button>
         <a
@@ -13,7 +13,7 @@
       </button>
       <% } %>
     </small>
-    <%= (comment.user._id );%>
+    <!-- <%= (comment);%> -->
     <!-- //why  ia m not getting name -->
     <!-- <%=(locals.user);%> -->
     <small> <%= (comment.user.name) %> </small>
