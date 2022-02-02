@@ -13,12 +13,10 @@ module.exports.home = async function (req, res) {
         populate: {
           path: "user",
         },
-        populate: {
-          //here as well
-          path: "likes",
-        },
-      })
-      .populate("likes"); //here it is
+      }) //changing here
+      .populate("likes");
+
+    //here it is
 
     let users = await User.find({});
     return res.render("home", {

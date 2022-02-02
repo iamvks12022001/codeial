@@ -1,7 +1,7 @@
 const express = require("express");
 const app = new express();
 const port = 8000;
-
+//to get express framework on port no 8000
 const session = require("express-session");
 
 const password = require("passport");
@@ -84,7 +84,7 @@ app.use(passport.setAuthenticatedUser);
 app.use(flash());
 app.use(customeMware.setFlash); // to send the messages to local storage
 
-app.use("/", require("./routes"));
+app.use(require("./routes"));
 
 app.listen(port, function (err) {
   if (err) {
@@ -92,3 +92,4 @@ app.listen(port, function (err) {
   }
   console.log(`Server is running in the port no :${port}`);
 });
+//run server on 8000
