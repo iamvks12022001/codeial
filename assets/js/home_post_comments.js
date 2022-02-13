@@ -54,29 +54,33 @@ class PostComments {
   newCommentDom(comment) {
     // CHANGE :: show the count of zero likes on this comment
 
-    return $(`<li id="comment-${comment._id}">
-                    <p>
-                        
-                        <small>
-                            <a class="delete-comment-button" href="/comments/destroy/${comment._id}">X</a>
-                        </small>
-                        
-                        ${comment.content}
-                        <br>
-                        <small>
-                            ${comment.user.name}
-                        </small>
-                        <small>
-                        
-                            <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${comment._id}&type=Comment">
-                                0 Likes
-                            </a>
-                        
-                        </small>
-
-                    </p>    
-
-            </li>`);
+    return $(`<div class="post-comment-item" id="comment-${comment._id}">
+    <div class="post-comment-header">
+      <small>
+        <button>
+          <a
+            class="delete-comment-button"
+            href="/comments/destroy/${comment._id}"
+            >X</a
+          >
+        </button>
+ 
+      </small>
+      <small>  ${comment.user.name} </small>
+      <small>
+        
+        <a
+          class="toggle-like-button"
+          data-likes="${comment.likes.length}"
+          href="/likes/toggle/?id=${comment._id}&type=Comment"
+        >
+          ${comment.likes.length} Likes
+        </a>
+      </small>
+    </div>
+    <div className="post-comment-content">${comment.content}</div>
+  </div>
+  `);
   }
 
   deleteComment(deleteLink) {
