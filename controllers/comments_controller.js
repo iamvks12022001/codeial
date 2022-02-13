@@ -18,7 +18,7 @@ module.exports.create = async function (req, res) {
 
       comment = await comment.populate("user", "name email").execPopulate();
 
-      commentMailer.newComment(comment);
+      // commentMailer.newComment(comment);
       if (req.xhr) {
         return res.status(200).json({
           data: {

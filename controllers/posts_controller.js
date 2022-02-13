@@ -7,7 +7,7 @@ module.exports.create = async function (req, res) {
   try {
     let post = await Post.create({
       content: req.body.content,
-      user: req.user._id,
+      user: req.user._id, //ye  kha se aya
     });
 
     if (req.xhr) {
@@ -28,6 +28,8 @@ module.exports.create = async function (req, res) {
 };
 module.exports.destroy = async function (req, res) {
   try {
+    // console.log("req des", req);
+    //params me id aa jaegi as we use get
     let post = await Post.findById(req.params.id);
 
     if (post.user == req.user.id) {

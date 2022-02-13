@@ -15,6 +15,7 @@
           $("#posts-list-container").prepend(newPost);
           //#posts-list-container>ul
           deletePost($(" .delete-post-button", newPost));
+          //this means newpost object ke andar jo delete-post-button class
 
           // call the create comment class
           new PostComments(data.data.post._id);
@@ -79,7 +80,7 @@
 
     //         </li>`);
 
-    return `
+    return $(`
     <div class="post-wrapper" id="post-${post._id}">
   <div class="post-header">
     <div class="post-avatar">
@@ -106,10 +107,10 @@
         
         <a
           class="toggle-like-button"
-          data-likes="0"
+          data-likes=${post.likes.length}
           href="/likes/toggle/?id=${post._id}&type=Post"
         >
-          0 Likes
+        ${post.likes.length} Likes
         </a>
         
       </small>
@@ -118,7 +119,7 @@
           src="https://cdn-icons.flaticon.com/png/128/4014/premium/4014104.png?token=exp=1643293150~hmac=0b72e94ef396f41074147bc78eaa4f57"
           alt="comments-icon"
         />
-        <span> 0</span>
+        <span> ${post.comments.length}</span>
       </div>
       
       <a class="delete-post-button" href="/posts/destroy/${post._id}"
@@ -152,14 +153,14 @@
   </div>
 </div>
 
-    `;
+    `);
   };
 
   // method to delete a post from DOM
   let deletePost = function (deleteLink) {
     $(deleteLink).click(function (e) {
       e.preventDefault();
-
+      console.log("url", $(deleteLink).prop("href"));
       $.ajax({
         type: "get",
         url: $(deleteLink).prop("href"),
@@ -182,8 +183,9 @@
 
   // loop over all the existing posts on the page (when the window loads for the first time) and call the delete post method on delete link of each, also add AJAX (using the class we've created) to the delete button of each
   let convertPostsToAjax = function () {
-    $("#posts-list-container>ul>li").each(function () {
+    $("#posts-list-container>div").each(function () {
       let self = $(this);
+
       let deleteButton = $(" .delete-post-button", self);
       deletePost(deleteButton);
 

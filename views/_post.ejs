@@ -1,5 +1,5 @@
 <!--set the id of the post-->
-<link rel="stylesheet" href="/css/post.css" />
+
 <div class="post-wrapper" id="post-<%= post._id%>">
   <div class="post-header">
     <div class="post-avatar">
@@ -52,6 +52,7 @@
     </div>
     <div class="post-comment-box">
       <% if (locals.user){ %>
+
       <!-- let's give an id to the new comment form, we'll also need to make the same changes in home_posts.js where we're adding a post to the page -->
       <form
         id="post-<%= post._id %>-comments-form"
