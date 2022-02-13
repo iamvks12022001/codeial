@@ -74,7 +74,7 @@ class PostComments {
           data-likes="${comment.likes.length}"
           href="/likes/toggle/?id=${comment._id}&type=Comment"
         >
-          ${comment.likes.length} Likes
+          Likes   ${comment.likes.length} 
         </a>
       </small>
     </div>
