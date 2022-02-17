@@ -3,10 +3,7 @@
 <div class="post-wrapper" id="post-<%= post._id%>">
   <div class="post-header">
     <div class="post-avatar">
-      <img
-        src="https://cdn-icons.flaticon.com/png/128/3177/premium/3177440.png?token=exp=1643293065~hmac=661ebff7dbbf539c5141d2795f93a378"
-        alt="user-pic"
-      />
+      <img src="<%=post.user.avatar %>" alt="user-pic" />
 
       <div>
         <span class="post-author"> <%= post.user.name %></span>

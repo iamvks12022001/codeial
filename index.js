@@ -44,6 +44,7 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 
 //route to connect upload file to see profile pic
+//JAHA PE PIC HA USK folder ko access to karana padega na
 app.use("/uploads", express.static(__dirname + "/uploads"));
 //make the uploades path avl to the browser
 

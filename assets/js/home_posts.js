@@ -13,7 +13,9 @@
         success: function (data) {
           let newPost = newPostDom(data.data.post);
           $("#posts-list-container").prepend(newPost);
+
           //#posts-list-container>ul
+
           deletePost($(" .delete-post-button", newPost));
           //this means newpost object ke andar jo delete-post-button class
 
@@ -85,7 +87,7 @@
   <div class="post-header">
     <div class="post-avatar">
       <img
-        src="https://cdn-icons.flaticon.com/png/128/3177/premium/3177440.png?token=exp=1643293065~hmac=661ebff7dbbf539c5141d2795f93a378"
+        src="${post.user.avatar}"
         alt="user-pic"
       />
 
@@ -160,7 +162,7 @@
   let deletePost = function (deleteLink) {
     $(deleteLink).click(function (e) {
       e.preventDefault();
-      console.log("url", $(deleteLink).prop("href"));
+
       $.ajax({
         type: "get",
         url: $(deleteLink).prop("href"),
