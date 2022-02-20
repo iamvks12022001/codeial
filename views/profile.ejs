@@ -31,4 +31,8 @@
 <% }else{ %>
 <h1>Name : <%= profile_user.name%></h1>
 <h1>Email : <%= profile_user.email%></h1>
-<% } %>
+<% if(friend){%>
+<a href="../unfollow/<%= profile_user._id%>"><button>UN Follow</button></a>
+<%}else{%>
+<a href="../friendship/<%= profile_user._id%>"><button>Follow</button></a>
+<%}%> <% } %>

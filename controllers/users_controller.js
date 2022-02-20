@@ -2,11 +2,19 @@ const User = require("../models/user");
 const fs = require("fs");
 const path = require("path");
 
-module.exports.profile = function (req, res) {
-  User.findById(req.params.id, function (err, user) {
+module.exports.profile = async function (req, res) {
+  let user = await User.findById(req.user.id);
+  let friend = user.friends.find(function (value) {
+    return value == req.params.id;
+  });
+
+  await User.findById(req.params.id, function (err, user) {
+    //finding a friend
+
     return res.render("profile", {
       title: "User Profile",
       profile_user: user,
+      friend: friend,
     });
   });
 };
@@ -97,4 +105,33 @@ module.exports.destroySession = function (req, res) {
   req.logout();
   req.flash("success", "You have logged Out");
   return res.redirect("/");
+};
+
+module.exports.makefriend = function (req, res) {
+  User.findById(req.user.id, function (err, user) {
+    if (
+      !user.friends.find(function (value) {
+        return value == req.params.id;
+      })
+    ) {
+      user.friends.push(req.params.id);
+      user.save();
+    }
+  });
+  return res.redirect("back");
+};
+//deletefriend
+
+module.exports.deletefriend = function (req, res) {
+  User.findById(req.user.id, function (err, user) {
+    if (
+      user.friends.find(function (value) {
+        return value == req.params.id;
+      })
+    ) {
+      user.friends.pull(req.params.id);
+      user.save();
+    }
+  });
+  return res.redirect("back");
 };

@@ -24,12 +24,12 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type: String, //defining in the schema
     },
-    // friends: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "User",
-    //   },
-    // ],
+    friends: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   {
     timestamp: true, // to basically give info like created at ,updated at

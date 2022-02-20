@@ -43,4 +43,17 @@ router.get(
 );
 //route at which we recieve the data from google ad redirect to home page after successfull communication with google
 
+//for friendship
+router.get(
+  "/friendship/:id",
+  passport.checkAuthentication,
+  usersController.makefriend
+);
+//unfollow
+router.get(
+  "/unfollow/:id",
+  passport.checkAuthentication,
+  usersController.deletefriend
+);
+
 module.exports = router;
