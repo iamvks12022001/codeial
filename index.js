@@ -24,10 +24,12 @@ const customeMware = require("./config/middleware");
 
 //include socket.io//chat_socket.js config file
 //set up the chat server to be used with socket.io
-const chatServer = require("http").Server(app); //get the http module
-const chatSockets = require("./config/chat_socket").chatSockets(chatServer);
-chatServer.listen(5000);
-console.log("server is listining in port 5000");
+
+//commenting chat server
+// const chatServer = require("http").Server(app); //get the http module
+// const chatSockets = require("./config/chat_socket").chatSockets(chatServer);
+// chatServer.listen(5000);
+// console.log("server is listining in port 5000");
 
 app.use(
   sassMiddleware({
