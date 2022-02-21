@@ -1,0 +1,99 @@
+.post-wrapper {
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-top: 20px;
+  background: #fff;
+  .post-header {
+    padding: 10px 10px;
+
+    .post-avatar {
+      display: flex;
+      .post-author {
+        color: #616161;
+        /* font-family: Open Sans; */
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+      }
+      img {
+        height: 40px;
+      }
+      .post-time {
+        /* font-family: Open Sans; */
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 19px;
+        color: #9e9e9e;
+      }
+    }
+    .post-avatar > div {
+      display: flex;
+      flex-direction: column;
+      padding-left: 12px;
+    }
+
+    .post-content {
+      /* font-family: Open Sans; */
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 22px;
+      color: #424242;
+      margin-top: 15px;
+    }
+    .post-actions {
+      padding: 5px;
+      display: flex;
+      border: 1px solid #e0e0e0;
+      padding: 5px 10px;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 19px;
+      color: #616161;
+      border-right: none;
+      border-left: none;
+      img {
+        height: 18px;
+      }
+      img:hover {
+        cursor: pointer;
+      }
+      .post-like {
+        display: flex;
+        align-items: center;
+      }
+      .post-comments-icon {
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+      }
+      .post-like span,
+      .post-comments-icon span {
+        margin-left: 7px;
+      }
+    }
+
+    .post-comment-box {
+      padding: 10px 10px;
+      input {
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        height: 35px;
+        margin: 0 auto;
+        width: 100%;
+        font-size: 15px;
+        box-sizing: border-box;
+        padding: 5px;
+        outline: none;
+      }
+    }
+
+    .post-comments-list {
+      padding: 5px 10px;
+      position: relative;
+    }
+  }
+}
