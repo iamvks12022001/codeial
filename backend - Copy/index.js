@@ -1,6 +1,6 @@
 const express = require("express");
 const app = new express();
-const port = 8000;
+const port = 5000;
 //to get express framework on port no 8000
 const session = require("express-session");
 
@@ -25,9 +25,6 @@ const customeMware = require("./config/middleware");
 //include socket.io//chat_socket.js config file
 //set up the chat server to be used with socket.io
 
-var cors = require("cors");
-app.use(cors());
-app.use(require("body-parser").json());
 //commenting chat server
 // const chatServer = require("http").Server(app); //get the http module
 // const chatSockets = require("./config/chat_socket").chatSockets(chatServer);

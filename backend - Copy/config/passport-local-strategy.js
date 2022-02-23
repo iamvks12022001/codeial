@@ -12,7 +12,6 @@ passport.use(
     },
     function (req, email, password, done) {
       //get the 1st argument as req due to above line
-      console.log("user", email, passport);
       User.findOne({ email: email }, function (err, user) {
         if (err) {
           req.flash("error", err);

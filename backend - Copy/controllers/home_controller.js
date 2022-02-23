@@ -27,8 +27,7 @@ module.exports.home = async function (req, res) {
       user = await User.findById(req.user.id).populate("friends", "name");
     }
     let users = await User.find({});
-
-    return res.send({
+    return res.render("home", {
       title: "Codeial | Home",
       posts: posts,
       all_users: users,

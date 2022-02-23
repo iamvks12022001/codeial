@@ -1,0 +1,48 @@
+<header id="layout-header">
+  <nav className="nav">
+    <div class="left-div">
+      <a href="/">
+        <img
+          style="height: 40px; position: absolute; top: 10px; left: 7px"
+          src="https://cdn-icons.flaticon.com/png/512/2685/premium/2685468.png?token=exp=1643118282~hmac=3070420ace303648a9855fc628d3e3f6"
+          alt="logo"
+        />
+        <span
+          style="position: relative; margin-left: 20px; left: 15px; color: aqua"
+          >Connect With World...
+        </span>
+      </a>
+    </div>
+    <div class="search-container">
+      <img
+        class="search-icon"
+        src="https://cdn-icons.flaticon.com/png/128/3249/premium/3249873.png?token=exp=1643116833~hmac=387dde74c0c6d5668ec55d418eeeaef5"
+        alt="search-icon"
+      />
+      <input placeholder="Search" />
+    </div>
+
+    <div class="auth-links">
+      <ul>
+        <% if (locals.user){ %>
+        <li>
+          <!--passing user id to profile page-->
+          <a href="/users/profile/<%= user.id%>"><%= user.name %></a>
+        </li>
+        <li>
+          <a href="/users/sign-out">Sign out</a>
+        </li>
+        <% }else{ %>
+        <li>
+          <a href="/users/sign-in">Sign In</a>
+        </li>
+        <li>
+          <a href="/users/sign-up">Sign Up</a>
+          <!--fixing phela sign in likha tha-->
+        </li>
+
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+</header>
