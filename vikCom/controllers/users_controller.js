@@ -3,20 +3,20 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports.profile = async function (req, res) {
-  let user = await User.findById(req.user.id);
-  let friend = user.friends.find(function (value) {
+  let userCurr = await User.findById(req.user.id);
+  let friend = userCurr.friends.find(function (value) {
     return value == req.params.id;
   });
 
-  await User.findById(req.params.id, function (err, user) {
-    //finding a friend
-
+  let user = await User.findById(req.params.id).populate("friends", "name ");
+  //finding a friend
+  if (user) {
     return res.render("profile", {
       title: "User Profile",
       profile_user: user,
       friend: friend,
     });
-  });
+  }
 };
 
 module.exports.update = async function (req, res) {
@@ -101,7 +101,7 @@ module.exports.create = function (req, res) {
 
 module.exports.createSesion = function (req, res) {
   req.flash("success", "Logged in Successfully");
-  return res.redirect("/users/profile/" + req.user.id); //to redirect to profile page
+  return res.redirect("/");
 };
 
 module.exports.destroySession = function (req, res) {

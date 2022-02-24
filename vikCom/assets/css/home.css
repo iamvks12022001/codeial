@@ -46,3 +46,5 @@
     #home-container #user-friends img {
       height: 40px;
       border-radius: 100%; }
+    #home-container #user-friends .userone {
+      display: none; }

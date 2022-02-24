@@ -36,3 +36,13 @@
 <%}else{%>
 <a href="../friendship/<%= profile_user._id%>"><button>Follow</button></a>
 <%}%> <% } %>
+<section id="user-friends">
+  <h4>Friends list</h4>
+
+  <% for(u of profile_user.friends){ %>
+  <a href="/users/profile/<%= u._id%>">
+    <span><%= u.name%></span>
+  </a>
+  <br />
+  <% } %>
+</section>
