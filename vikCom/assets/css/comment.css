@@ -1,0 +1,24 @@
+.post-comment-item {
+  background: #eceffa;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 14px; }
+  .post-comment-item .post-comment-header {
+    display: flex; }
+    .post-comment-item .post-comment-header .post-comment-author {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      color: #757575; }
+    .post-comment-item .post-comment-header .post-comment-time {
+      font-size: 12px;
+      line-height: 16px;
+      color: #9e9e9e;
+      margin-left: 8px; }
+    .post-comment-item .post-comment-header .post-comment-likes {
+      font-size: 12px;
+      line-height: 16px;
+      color: #616161;
+      margin-left: 8px; }
+  .post-comment-item .post-comment-content {
+    margin-top: 7px; }
