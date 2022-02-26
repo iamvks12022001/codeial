@@ -1,4 +1,4 @@
-<h1>sign up</h1>
+<!-- <h1>sign up</h1>
 <form action="/users/create" method="POST">
   <input type="text" name="name" placeholder="Your Name " required />
   <input type="email" name="email" placeholder="Your Email " required />
@@ -14,5 +14,80 @@
 
 <p>
   <a href="/users/auth/google">Google Sign In/Sign Up</a>
-</p>
+</p> -->
 <!-- //we are using post methd bcz we are sending data to server -->
+
+<div id="signin">
+  <link rel="stylesheet" href="/css/signin.css" />
+  <img
+    style="width: 20%; margin: auto; margin-right: 2%; margin-left: 14%; padding: 3%"
+    src="https://cdn-icons.flaticon.com/png/512/2685/premium/2685468.png?token=exp=1643118282~hmac=3070420ace303648a9855fc628d3e3f6"
+  />
+  <div class="screen-1" style="margin: auto; margin-left: 1%; width: 25%; ">
+    <form action="/users/create" method="POST" style="margin-top: 35%">
+      <div class="email" >
+        <label  for="name">Name</label>
+        <div class="sec-2">
+          <ion-icon name="mail-outline"></ion-icon>
+          <input type="text" name="name" placeholder="Your Name" required />
+        </div>
+      </div>
+
+      <div class="email" style="margin-top: 2em;">
+        <label for="email">Email Address</label>
+        <div class="sec-2">
+          <ion-icon name="mail-outline"></ion-icon>
+          <input
+            type="email"
+            name="email"
+            placeholder="Username@gmail.com"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="password">
+        <label for="password">Password</label>
+        <div class="sec-2">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <input
+            class="pas"
+            type="password"
+            name="password"
+            placeholder="············"
+            required
+          />
+          <ion-icon class="show-hide" name="eye-outline"></ion-icon>
+        </div>
+      </div>
+
+      <div class="password">
+        <label for="confirm_password">Confirm Password</label>
+        <div class="sec-2">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <input
+            class="pas"
+            type="password"
+            name="confirm_password"
+            placeholder="············"
+            required
+          />
+          <ion-icon class="show-hide" name="eye-outline"></ion-icon>
+        </div>
+      </div>
+
+      <button class="login" type="submit" style="color: #ffffff">Sign Up</button>
+      <button class="login" style="color: #f5f0f0; background-color: #fd0a0a">
+        <a href="/users/auth/google">Google Sign In/Sign Up</a>
+      </button>
+    </form>
+    <div class="footer">
+      <span><a href="./sign-in"> Sign in</a></span
+      >
+    </div>
+  </div>
+
+  
+</div>
+  <!-- //we are using post methd bcz we are sending data to server -->
+</div>
