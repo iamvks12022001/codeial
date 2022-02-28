@@ -182,7 +182,25 @@
           <div class="post-avatar">
             <div>
               <span class="post-author"> <%= post.user.name %></span>
-              <span class="post-time">a minute ago</span>
+              <% d = new Date()-post.createdAt; %>
+              <ul
+                style="
+                  color: grey;
+                  list-style: disc;
+                  font-family: 'Times New Roman', Times, serif;
+                  font-size: smaller;
+                "
+              >
+                <li>
+                  <span class="post-time"><%= convertMiliseconds(d) %></span>
+                </li>
+
+                <li>
+                  <span class="post-time"
+                    >Created At :<%= post.createdAt %></span
+                  >
+                </li>
+              </ul>
             </div>
           </div>
 
