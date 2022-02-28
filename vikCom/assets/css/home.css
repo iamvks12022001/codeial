@@ -46,5 +46,8 @@
     #home-container #user-friends img {
       height: 40px;
       border-radius: 100%; }
+    #home-container #user-friends ul {
+      list-style-type: none; }
     #home-container #user-friends .userone {
-      display: none; }
+      display: none;
+      list-style-type: none; }

@@ -8,3 +8,5 @@ body {
   body #layout-main {
     height: auto;
     min-height: 100%; }
+  body ul {
+    list-style-type: none; }

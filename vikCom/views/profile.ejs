@@ -1,10 +1,10 @@
 <link rel="stylesheet" href="/css/user_profile.css" />
-<img src="<%=profile_user.avatar %>" alt="<%= user.name %>" width="100" />
-<!--showing the pic-->
-<h1>Codeial / <%=title%></h1>
 
-<% if(user.id==profile_user.id){ %>
-<!--set encrypt type as multpart-->
+<!-- showing the pic
+<h1>Codeial / <%=title%></h1> -->
+
+<!-- <% if(user.id==profile_user.id){ %>
+
 <form
   action="/users/update/<%= profile_user._id%>"
   enctype="multipart/form-data"
@@ -25,7 +25,7 @@
     required
   />
   <input type="file" name="avatar" placeholder="Profile pic" />
-  <!--take input for file-->
+  
   <input type="submit" value="Update" />
 </form>
 <% }else{ %>
@@ -45,4 +45,122 @@
   </a>
   <br />
   <% } %>
+</section> -->
+
+<div class="screen-1">
+  <img src="<%=profile_user.avatar %>" alt="<%= user.name %>" width="100" />
+  <% if(user.id==profile_user.id){ %>
+  <form
+    action="/users/update/<%= profile_user._id%>"
+    enctype="multipart/form-data"
+    method="POST"
+  >
+    <div class="name">
+      <label for="name">Name : </label>
+      <div class="sec-2">
+        <input
+          type="text"
+          name="name"
+          placeholder="abc"
+          value="<%= profile_user.name %>"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="email">
+      <label for="email">Email Address : </label>
+      <div class="sec-2">
+        <input
+          type="email"
+          name="email"
+          placeholder="Username@gmail.com"
+          value="<%= profile_user.email %>"
+          required
+        />
+      </div>
+    </div>
+
+    <button
+      class="login"
+      style="color: white; cursor: auto"
+      placeholder="Profile pic"
+    >
+      <input
+        type="file"
+        name="avatar"
+        style="cursor: pointer"
+        placeholder="Profile pic"
+      />
+    </button>
+
+    <button
+      class="login"
+      type="submit"
+      style="color: white; background-color: rgb(3, 70, 216)"
+    >
+      Update
+    </button>
+  </form>
+
+  <% }else{ %>
+  <div class="name">
+    <label for="name">Name : </label>
+    <div class="sec-2">
+      <input
+        type="text"
+        name="name"
+        value="<%= profile_user.name %>"
+        required
+        readonly
+      />
+    </div>
+  </div>
+
+  <div class="email">
+    <label for="email">Email Address : </label>
+    <div class="sec-2">
+      <input
+        type="email"
+        name="email"
+        value="<%= profile_user.email %>"
+        required
+        readonly
+      />
+    </div>
+  </div>
+
+  <!-- <h1>Name : <%= profile_user.name%></h1>
+  <h1>Email : <%= profile_user.email%></h1> -->
+  <% if(friend){%>
+  <a href="../unfollow/<%= profile_user._id%>"
+    ><button
+      class="login"
+      style="color: white; background-color: rgb(172, 8, 8)"
+    >
+      UN Follow
+    </button></a
+  >
+  <%}else{%>
+  <a href="../friendship/<%= profile_user._id%>"
+    ><button
+      class="login"
+      style="color: white; background-color: rgb(6, 109, 6)"
+    >
+      Follow
+    </button></a
+  >
+  <%}%> <% } %>
+</div>
+
+<section id="user-friends">
+  <h4>Friends list</h4>
+
+  <% for(u of profile_user.friends){ %>
+  <a href="/users/profile/<%= u._id%>">
+    <span><%= u.name%></span>
+  </a>
+  <br />
+
+  <%} %>
 </section>
