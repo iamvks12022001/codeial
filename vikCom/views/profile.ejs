@@ -153,14 +153,66 @@
   <%}%> <% } %>
 </div>
 
-<section id="user-friends">
-  <h4>Friends list</h4>
+<div>
+  <section id="post-list" style="width: 80%; float: left">
+    <h4>Post list</h4>
 
-  <% for(u of profile_user.friends){ %>
+    <div id="posts-list-container">
+      <% for(post of Upost){ %>
+
+      <div class="post-wrapper" id="post-<%= post._id%>">
+        <div class="post-header">
+          <div class="post-avatar">
+            <div>
+              <span class="post-author"> <%= post.user.name %></span>
+              <span class="post-time">a minute ago</span>
+            </div>
+          </div>
+
+          <div class="post-content"><%= post.content %></div>
+
+          <div class="post-actions">
+            <!-- CHANGE :: display the likes of this post, if the user is logged in, then show the link to toggle likes, else, just show the count -->
+            <!-- study about the data attribute -->
+            <small class="post-like">
+              <img
+                src="https://cdn-icons.flaticon.com/png/512/210/premium/210545.png?token=exp=1643293212~hmac=60f900047914e3528898eb90e89cf2cd"
+                alt="like-icon"
+              />
+              <%= post.likes.length %> Likes %>
+            </small>
+            <div class="post-comments-icon">
+              <img
+                src="https://cdn-icons.flaticon.com/png/128/4014/premium/4014104.png?token=exp=1643293150~hmac=0b72e94ef396f41074147bc78eaa4f57"
+                alt="comments-icon"
+              />
+              <span><%= post.comments.length %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%} %>
+    </div>
+
+    <!-- <% for(u of profile_user.friends){ %>
   <a href="/users/profile/<%= u._id%>">
     <span><%= u.name%></span>
   </a>
   <br />
 
-  <%} %>
-</section>
+  <%} %> -->
+  </section>
+
+  <section id="user-friends" style="width: 15%; float: right">
+    <h4>Friends list</h4>
+
+    <% for(u of profile_user.friends){ %>
+    <a href="/users/profile/<%= u._id%>">
+      <span><%= u.name%></span>
+    </a>
+    <br />
+
+    <%} %>
+  </section>
+</div>

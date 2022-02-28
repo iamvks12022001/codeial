@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const fs = require("fs");
 const path = require("path");
+const Post = require("../models/post");
 
 module.exports.profile = async function (req, res) {
   let userCurr = await User.findById(req.user.id);
@@ -9,12 +10,14 @@ module.exports.profile = async function (req, res) {
   });
 
   let user = await User.findById(req.params.id).populate("friends", "name ");
+  let post = await Post.find({ user: req.params.id }).sort("-createdAt");
   //finding a friend
   if (user) {
     return res.render("profile", {
       title: "User Profile",
       profile_user: user,
       friend: friend,
+      Upost: post,
     });
   }
 };

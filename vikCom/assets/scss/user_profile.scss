@@ -99,3 +99,78 @@ $s: "#3E4684";
 button {
   cursor: pointer;
 }
+
+#user-friends {
+  width: 20%;
+  padding: 10px;
+  border-left: 1px solid lightgrey;
+  img {
+    height: 40px;
+    border-radius: 100%;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+  .userone {
+    display: none;
+    list-style-type: none;
+  }
+}
+
+//post
+
+.post-wrapper {
+  padding: 1%;
+
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin: 1%;
+  margin-left: 4%;
+  background: #fff;
+  .post-header {
+    padding: 10px 10px;
+
+    .post-content {
+      /* font-family: Open Sans; */
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 22px;
+      color: #424242;
+      margin-top: 15px;
+    }
+    .post-actions {
+      padding: 5px;
+      display: flex;
+      border: 1px solid #e0e0e0;
+      padding: 5px 10px;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 19px;
+      color: #616161;
+      border-right: none;
+      border-left: none;
+      img {
+        height: 18px;
+      }
+      img:hover {
+        cursor: pointer;
+      }
+      .post-like {
+        display: flex;
+        align-items: center;
+      }
+      .post-comments-icon {
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+      }
+      .post-like span,
+      .post-comments-icon span {
+        margin-left: 7px;
+      }
+    }
+  }
+}
