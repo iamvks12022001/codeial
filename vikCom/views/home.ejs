@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="/css/post.css" />
 <link rel="stylesheet" href="/css/comment.css" />
 <div id="home-container">
+  <%- include('_getdategap');%>
   <section id="feed-posts">
     <div id="feed-list">
       <% if(locals.user){ %>
@@ -57,6 +58,7 @@
 <script src="/js/home_post_comments.js">
   //conneting 2 nd assets of js file
 </script>
+
 <script src="/js/home_posts.js"></script>
 
 <!-- CHANGE :: import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
@@ -67,6 +69,7 @@
     let toggleLike = new ToggleLike(self);
   });
 </script>
+
 <script>
   function search() {
     let input = document.getElementById("search").value;

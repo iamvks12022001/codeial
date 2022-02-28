@@ -93,7 +93,7 @@
 
       <div>
         <span class="post-author"> ${post.user.name}</span>
-        <span class="post-time">a minute ago</span>
+        <span class="post-time">a sec ago</span>
       </div>
     </div>
 

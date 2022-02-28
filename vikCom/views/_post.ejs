@@ -7,7 +7,9 @@
 
       <div>
         <span class="post-author"> <%= post.user.name %></span>
-        <span class="post-time">a minute ago</span>
+        <% d = new Date()-post.createdAt; %>
+
+        <span class="post-time"><%= convertMiliseconds(d) %></span>
       </div>
     </div>
 

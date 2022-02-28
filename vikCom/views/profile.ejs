@@ -155,7 +155,24 @@
 
 <div>
   <section id="post-list" style="width: 80%; float: left">
-    <h4>Post list</h4>
+    <button
+      class="login"
+      style="
+        color: white;
+        cursor: auto;
+        padding: 1em;
+
+        background: rgb(3, 88, 150);
+        border: none;
+        border-radius: 30px;
+        font-weight: 600;
+        width: 20%;
+        margin: 1%;
+        margin-left: 4%;
+      "
+    >
+      Posts
+    </button>
 
     <div id="posts-list-container">
       <% for(post of Upost){ %>
@@ -205,13 +222,45 @@
   </section>
 
   <section id="user-friends" style="width: 15%; float: right">
-    <h4>Friends list</h4>
+    <button
+      class="login"
+      style="
+        color: white;
+        cursor: auto;
+        padding: 1em;
+
+        background: rgb(4, 134, 26);
+        border: none;
+        border-radius: 30px;
+        font-weight: 600;
+        width: 80%;
+        margin: 1%;
+        margin-top: 11%;
+        margin-bottom: 10%;
+      "
+    >
+      Friends
+    </button>
 
     <% for(u of profile_user.friends){ %>
-    <a href="/users/profile/<%= u._id%>">
-      <span><%= u.name%></span>
-    </a>
-    <br />
+    <button
+      class="login"
+      style="
+        color: white;
+        cursor: auto;
+        margin: 3px;
+
+        background: rgb(223, 222, 219);
+        border: none;
+
+        font-weight: 300;
+        width: 80%;
+      "
+    >
+      <a href="/users/profile/<%= u._id%>">
+        <h3><%= u.name%></h3>
+      </a>
+    </button>
 
     <%} %>
   </section>
