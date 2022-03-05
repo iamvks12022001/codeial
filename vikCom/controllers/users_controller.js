@@ -3,6 +3,8 @@ const fs = require("fs");
 const path = require("path");
 const Post = require("../models/post");
 
+const newuser = require("../mailers/comments_mailer");
+
 module.exports.profile = async function (req, res) {
   let userCurr = await User.findById(req.user.id);
   let friend = userCurr.friends.find(function (value) {
@@ -91,6 +93,7 @@ module.exports.create = function (req, res) {
           console.log("eror in Creating user in signing up");
           return;
         }
+        newuser.newComment(user);
         user.avatar = User.avatarPath + "/avatar-1645126763581";
         console.log("user", user.avatar);
         user.save();

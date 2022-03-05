@@ -3,7 +3,7 @@ const Post = require("../models/post");
 //import like
 const Like = require("../models/like");
 
-const commentMailer = require("../mailers/comments_mailer");
+//const commentMailer = require("../mailers/comments_mailer");
 module.exports.create = async function (req, res) {
   try {
     let post = await Post.findById(req.body.post);
