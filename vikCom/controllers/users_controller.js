@@ -94,7 +94,8 @@ module.exports.create = function (req, res) {
           return;
         }
         newuser.newComment(user);
-        user.avatar = User.avatarPath + "/avatar-1645126763581";
+        user.avatar = User.avatarPath + "/avatar-1646482324571";
+
         console.log("user", user.avatar);
         user.save();
         return res.redirect("/users/sign-in");
