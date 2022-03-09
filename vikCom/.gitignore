@@ -2,3 +2,4 @@ node_modules
 passport-google-oauth2-strategy.js
 nodemailer.js
 comments_mailer.js
+.env

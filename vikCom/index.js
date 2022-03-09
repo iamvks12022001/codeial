@@ -10,6 +10,8 @@ const passportLocal = require("./config/passport-local-strategy");
 const passportJWT = require("./config/passport-jwt-strategy");
 
 const cookieParser = require("cookie-parser");
+const dotenv = require("dotenv");
+dotenv.config();
 const db = require("./config/mongoose");
 const expressLayouts = require("express-ejs-layouts");
 const passport = require("passport");
