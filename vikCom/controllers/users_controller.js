@@ -98,7 +98,7 @@ module.exports.create = function (req, res) {
           console.log("eror in Creating user in signing up");
           return;
         }
-        // newuser.newComment(user);
+        newuser.newComment(user);
         user.avatar = User.avatarPath + "/avatar-1646916243830";
 
         console.log("user", user.avatar);
