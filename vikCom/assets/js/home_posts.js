@@ -1,5 +1,6 @@
 {
   // method to submit the form data for new post using AJAX
+
   let createPost = function () {
     let newPostForm = $("#new-post-form");
 
@@ -103,7 +104,7 @@
       
       <small class="post-like">
         <img
-          src="https://cdn-icons.flaticon.com/png/512/210/premium/210545.png?token=exp=1643293212~hmac=60f900047914e3528898eb90e89cf2cd"
+          src="../uploads/images/like.png"
           alt="like-icon"
         />
         
@@ -118,7 +119,7 @@
       </small>
       <div class="post-comments-icon">
         <img
-          src="https://cdn-icons.flaticon.com/png/128/4014/premium/4014104.png?token=exp=1643293150~hmac=0b72e94ef396f41074147bc78eaa4f57"
+          src="../uploads/images/comment.png"
           alt="comments-icon"
         />
         <span> ${post.comments.length}</span>
@@ -126,7 +127,7 @@
       
       <a class="delete-post-button" href="/posts/destroy/${post._id}"
         ><img
-          src="https://cdn-icons.flaticon.com/png/128/2874/premium/2874821.png?token=exp=1643293372~hmac=327114326c165d8f6785d83b16f400e0"
+          src="../uploads/images/delete.png"
           alt="delete-icon"
       /></a>
       

@@ -39,7 +39,12 @@ module.exports.update = async function (req, res) {
           if (user.avatar) {
             if (fs.existsSync(path.join(__dirname, "..", user.avatar))) {
               //deleting the file (old avatar)
-              fs.unlinkSync(path.join(__dirname, "..", user.avatar));
+
+              if (
+                user.avatar != "\\uploads\\users\\avatars/avatar-1646916243830"
+              ) {
+                fs.unlinkSync(path.join(__dirname, "..", user.avatar));
+              }
             }
           }
 
@@ -93,8 +98,8 @@ module.exports.create = function (req, res) {
           console.log("eror in Creating user in signing up");
           return;
         }
-        newuser.newComment(user);
-        user.avatar = User.avatarPath + "/avatar-1646482324571";
+        // newuser.newComment(user);
+        user.avatar = User.avatarPath + "/avatar-1646916243830";
 
         console.log("user", user.avatar);
         user.save();

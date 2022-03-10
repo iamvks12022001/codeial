@@ -42,8 +42,9 @@ app.use(
     prefix: "/css",
   })
 );
-app.use(expressLayouts);
 app.use(express.static("./assets"));
+app.use(expressLayouts);
+
 app.use(express.urlencoded());
 app.use(cookieParser());
 
