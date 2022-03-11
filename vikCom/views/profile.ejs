@@ -211,14 +211,14 @@
             <!-- study about the data attribute -->
             <small class="post-like">
               <img
-                src="http://localhost:8000/uploads/images/like.png"
+                src="<%= process.env.HOST_URL%>/uploads/images/like.png"
                 alt="like-icon"
               />
               <%= post.likes.length %> Likes %>
             </small>
             <div class="post-comments-icon">
               <img
-                src="http://localhost:8000/uploads/images/comment.png"
+                src="<%= process.env.HOST_URL%>/uploads/images/comment.png"
                 alt="comments-icon"
               />
               <span><%= post.comments.length %></span>
