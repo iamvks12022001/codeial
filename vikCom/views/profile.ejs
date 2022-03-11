@@ -1,52 +1,5 @@
 <link rel="stylesheet" href="/css/user_profile.css" />
 
-<!-- showing the pic
-<h1>Codeial / <%=title%></h1> -->
-
-<!-- <% if(user.id==profile_user.id){ %>
-
-<form
-  action="/users/update/<%= profile_user._id%>"
-  enctype="multipart/form-data"
-  method="POST"
->
-  <input
-    type="text"
-    name="name"
-    placeholder="Enter name"
-    value="<%= profile_user.name %>"
-    required
-  />
-  <input
-    type="email"
-    name="email"
-    placeholder="Enter email"
-    value="<%= profile_user.email %>"
-    required
-  />
-  <input type="file" name="avatar" placeholder="Profile pic" />
-  
-  <input type="submit" value="Update" />
-</form>
-<% }else{ %>
-<h1>Name : <%= profile_user.name%></h1>
-<h1>Email : <%= profile_user.email%></h1>
-<% if(friend){%>
-<a href="../unfollow/<%= profile_user._id%>"><button>UN Follow</button></a>
-<%}else{%>
-<a href="../friendship/<%= profile_user._id%>"><button>Follow</button></a>
-<%}%> <% } %>
-<section id="user-friends">
-  <h4>Friends list</h4>
-
-  <% for(u of profile_user.friends){ %>
-  <a href="/users/profile/<%= u._id%>">
-    <span><%= u.name%></span>
-  </a>
-  <br />
-  <% } %>
-</section> -->
-
 <div class="screen-1">
   <img src="<%=profile_user.avatar %>" alt="<%= user.name %>" width="100" />
   <% if(user.id==profile_user.id){ %>
